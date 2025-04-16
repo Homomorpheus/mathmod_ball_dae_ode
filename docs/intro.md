@@ -1,4 +1,8 @@
-# Welcome to your Jupyter Book
+# Hallo Helene, das ist unsere Website!
+
+## Ja, das ist eine echte Internetseite, die wir einfach so schreiben können.
+
+## Und es ist einfacher als LaTeX!
 
 This is a small sample book to give you a feel for how book content is
 structured.
