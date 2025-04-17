@@ -4,7 +4,9 @@ This file contains DAE/ODE solvers for use throughout the project.
 
 
 import numpy as np
-from scipy.optimize import fsolve
+from scipy.optimize import root
+import warnings
+import sympy
 
 
 def generalized_alpha(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, C: np.ndarray, force, steps, t_end, callback=None, rhoinfty=0.8):
@@ -47,7 +49,7 @@ def generalized_alpha(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, C: np.ndarr
         qold, vold, aold = np.split(old, len(old)/dim)
         qnew, vnew, anew, qmid, vmid, amid = np.split(new, len(new)/dim)
 
-        eq_eval = np.concatenate([(M@amid.transpose()).transpose() + (C@vmid.transpose()).transpose() - force(qmid),
+        eq_eval = np.concatenate([(M@amid.transpose()).transpose() + (C@vmid.transpose()).transpose() - force(qmid, vmid),
                                   qold - qnew + h*vold + h**2*((0.5 - beta)*aold + beta*anew),
                                   vold - vnew + h*((1 - gamma)*aold + gamma*anew),
                                   - qmid + (1 - af)*qnew + af*qold,
@@ -58,14 +60,21 @@ def generalized_alpha(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, C: np.ndarr
         
     for step in range(1,steps+1):
         # solve the solver's equations
-        new = fsolve(eqs, np.concatenate([old, old]))
-        old=new[:3*dim]
+        sol = root(eqs, np.concatenate([old, old]))
+
+        if not sol.success:
+            if sol.status == 5:
+                warnings.warn(sol.message, RuntimeWarning)
+            else:
+                callback(step, old, error=True)
+                raise RuntimeError(F"fscipy.optimize.root did not converge (message: {sol.message})")
+        
+        old=sol.x[:3*dim]
         
         if callback != None:
-            callback(step, old)
+            callback(step, old, error=False)
             
     return old
-
 
     
 # def newmark_beta(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, force, steps, t_end, callback=None, beta=1, gamma=1):
