@@ -44,7 +44,7 @@ def generalized_alpha(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, C: np.ndarr
     old = np.concatenate([q0, v0, a0]) # not as long as new!
 
     # implicit solver equations
-    # new is qnew, vnew, anew, qmid, vmid
+    # new is qnew, vnew, anew, qmid, vmid; each of length dim
     def eqs(new: np.array):
         qold, vold, aold = np.split(old, len(old)/dim)
         qnew, vnew, anew, qmid, vmid, amid = np.split(new, len(new)/dim)
@@ -72,9 +72,12 @@ def generalized_alpha(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, C: np.ndarr
         old=sol.x[:3*dim]
         
         if callback != None:
-            callback(step, old, error=False)
+            terminate = callback(step, old, error=False)
+
+        if terminate == True:
+            break
             
-    return old
+    return old, step
 
     
 # def newmark_beta(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, force, steps, t_end, callback=None, beta=1, gamma=1):
