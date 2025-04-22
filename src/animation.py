@@ -56,7 +56,7 @@ class BallAnimation:
             mode = self._modes[frame]
 
             if jupyter_progress_bar:
-                status[0].value = F"<b>frame {frame} of {len(self._positions)}</b>"
+                status[0].value = F"<b>frame {frame + 1} of {len(self._positions)}</b>"
                 status[1].value = frame
 
             if mode == "dae":
@@ -79,6 +79,9 @@ class BallAnimation:
             return [point, text]
 
         ani = matplotlib.animation.FuncAnimation(fig, feed_to_matplotlib, frames=len(self._positions), interval=interval*1000, blit=True)
-        ani.save(filename)
+        # ani.save(filename)
+        # https://stackoverflow.com/a/55174144
+        with open(filename, "w") as file:
+            print(ani.to_jshtml(), file=file)
 
         plt.close()
