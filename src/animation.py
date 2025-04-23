@@ -18,6 +18,10 @@ import geometry
 
 class BallAnimation:
     "Helper class to generate matplotlib animation"
+
+    colors = {"ball": "#ffa600",
+              "curve": "#003f5c"
+             }
     
     def __init__(self, curve: geometry.CurveConstraint, ball: geometry.Ball):
         self._positions = []
@@ -34,18 +38,20 @@ class BallAnimation:
 
     def render(self, interval, filename, jupyter_progress_bar=True):
         "render and save to file"
-        px = 1/plt.rcParams['figure.dpi']  # pixel in inches
-        fig, ax = plt.subplots(figsize=(600*px, 600*px), frameon=False)
+        fig, (ax, axtext) = plt.subplots(figsize=(8, 8), nrows=2, ncols=1, height_ratios=(6, 1))
+        
         ax.set_aspect("equal")
         ax.set(xlim=self._curve.xlim, ylim=self._curve.ylim_padded)
+
+        axtext.axis("off")
         
-        self._curve.plot(ax)
-        point, = ax.plot([], [], "bo")
-        text = ax.text(0.05, 1.35, "", transform=ax.transAxes, fontsize=11,
-            verticalalignment='top', bbox={"boxstyle":'round', "facecolor":"white"})
+        self._curve.plot(ax, color=self.colors["curve"])
+        point, = ax.plot([], [], "o", color=self.colors["ball"])
+        text = axtext.text(0, 1, "", transform=axtext.transAxes, fontsize=11,
+            verticalalignment='top', horizontalalignment="left")
 
         if jupyter_progress_bar:
-            status = [widgets.HTML("-"), widgets.IntProgress(value=0, min=0, max=len(self._positions), description="")]
+            status = [widgets.HTML("-"), widgets.IntProgress(value=0, min=0, max=len(self._positions) - 1, description="")]
             display(widgets.HBox(status))
         
 
@@ -63,13 +69,13 @@ class BallAnimation:
                 # if not self._curve.fulfills_constraint(self._positions[frame]):
                 #     q = self._positions[frame]
                 #     print(self._curve._expression.evalf(subs={self._curve._x: q[0], self._curve._y: q[1]}), frame)
-                text.set_text(F"frame = {frame}, mode: {mode}\n"
+                text.set_text(F"frame: {frame + 1} \nmode: DAE\n"
                               + "$F_{cf} = " + F"{self._curve.centrifugal_force(self._ball._mass, self._positions[frame], self._velocities[frame]) : .2f}$\n"
                               + "$F_{tot} = " + F"{self._ball.total_physical_normal_force(self._positions[frame], self._velocities[frame]) : .2f}$"
                              )
                 
             elif mode == "ode":
-                text.set_text(F"frame = {frame},  mode: {mode}\n"
+                text.set_text(F"frame: {frame + 1} \nmode: ODE\n"
                               + F"pos = {self._positions[frame]}"
                              )
                 
@@ -79,9 +85,9 @@ class BallAnimation:
             return [point, text]
 
         ani = matplotlib.animation.FuncAnimation(fig, feed_to_matplotlib, frames=len(self._positions), interval=interval*1000, blit=True)
-        # ani.save(filename)
+        ani.save(filename)
         # https://stackoverflow.com/a/55174144
-        with open(filename, "w") as file:
-            print(ani.to_jshtml(), file=file)
+        # with open(filename, "w") as file:
+        #     print(ani.to_jshtml(), file=file)
 
         plt.close()

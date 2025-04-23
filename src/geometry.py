@@ -28,6 +28,7 @@ class CurveConstraint:
         self._expression = equation_expression # sympy curve description expressed in x and y
         self._expression_gradient = [diff(equation_expression, x), diff(equation_expression, y)]
         self._expression_hessian = [[diff(equation_expression, var1, var2) for var1 in (x, y)] for var2 in (x, y)]
+        
         self._x = x
         self._y = y
         
@@ -54,6 +55,8 @@ class CurveConstraint:
                 
             self._xvals.append(np.ma.masked_array(xspace, mask))
             self._yvals.append(np.ma.masked_array(np.real(sol_vals), mask))
+            # self._xvals.append(xspace[np.isclose(sol_vals.imag, 0)])
+            # self._yvals.append(np.real(sol_vals)[np.isclose(sol_vals.imag, 0)])
 
     @property
     @functools.cache
@@ -80,10 +83,10 @@ class CurveConstraint:
         ylim = np.array(self.ylim)
         return ylim + np.array([-self.ypadding, self.ypadding])
 
-    def plot(self, ax):
+    def plot(self, ax, color="black"):
         "plot the curve represented by the class instance"
         for x, y in zip(self._xvals, self._yvals):
-            ax.plot(x, y, color="black")
+            ax.plot(x, y, color=color)
 
     def fulfills_constraint(self, q, atol=1e-1)->np.ndarray:
         error = self._expression.evalf(subs={self._x: q[0], self._y: q[1]})
@@ -216,7 +219,7 @@ class CurveConstraint:
 class Ball:
     "data storage and helper functions for an idealized ball; this class is time-independent"
     
-    def __init__(self, curve: CurveConstraint, mass: float, gravity: np.ndarray,
+    def __init__(self, curve: CurveConstraint, mass: float, gravity,
                  curve_friction: float=0.0, bouncyness: float=0.5):
         self._curve = curve
         self._mass = mass
@@ -241,7 +244,7 @@ class Ball:
 
         self._gravity = gravity
         # see https://jschoeberl.github.io/IntroSC/ODEs/mechanical.html#systems-with-constraints
-        self.force = curve.force_to_constraint_force(gravity)
+        self.force = curve.force_to_constraint_force(lambda q, v: mass*gravity(q, v))
 
     def total_physical_normal_force(self, q: np.ndarray, v: np.ndarray)->float:
         "for position q and velocity v, compute the forces acting on the ball, without those from lagrange parameters"
@@ -303,17 +306,23 @@ class Ball:
             # if wthe ball hits the wall
             if not self._curve.is_inside(qnew):
                 # ensure the position is valid
-                qnew[:] = self._curve.project_to_curve(qnew)
+                if current_step+step >= 500:
+                    print(F"frame {current_step+step}, q = {qnew}, v = {vnew}")
+                    qnew[:] = self._curve.project_to_curve(qnew)
+                    print(F"err_after = {self._curve._expression.evalf(subs={self._curve._x: qnew[0], self._curve._y: qnew[1]})}")
+                    print(self._curve.normal_vec(qnew))
+                else:
+                    qnew[:] = self._curve.project_to_curve(qnew)
                 
                 normal = self._curve.normal_vec(qnew)
                 tangent = self._curve.tangent_vec(qnew)
                 # normal velocity **after** bounce
-                normal_vel = self.bouncyness*np.dot(normal, vnew)
+                normal_vel = - self.bouncyness*np.dot(normal, vnew)
                 
                 if np.abs(normal_vel) <= 0.1:
                     return True
                 else:
-                    vnew[:] = tangent - normal_vel*normal
+                    vnew[:] = np.dot(vnew, tangent)*tangent + normal_vel*normal
 
             return terminate
 
@@ -325,7 +334,7 @@ class Ball:
             qold = qold[0:2]
             vold = vold[0:2]
 
-            old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_ode, np.zeros((2,2)), self._gravity, steps-step, t_end, callback_ode)
+            old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_ode, np.zeros((2,2)), lambda q, v: self._mass*self._gravity(q, v), steps-step, t_end, callback_ode)
             qold, vold = self.ode_data_to_dae_data(old)
             step += step_out
         
@@ -338,7 +347,7 @@ class Ball:
             if step >= steps:
                 break
 
-            old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_ode, np.zeros((2,2)), self._gravity, steps-step, t_end, callback_ode)
+            old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_ode, np.zeros((2,2)), lambda q, v: self._mass*self._gravity(q, v), steps-step, t_end, callback_ode)
             qold, vold = self.ode_data_to_dae_data(old)
             step += step_out
             
