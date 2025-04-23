@@ -1,0 +1,5 @@
+sympy==1.13.3
+numpy==2.2.1
+scipy==1.15.2
+matplotlib==3.10.0
+ipympl==0.9.6
