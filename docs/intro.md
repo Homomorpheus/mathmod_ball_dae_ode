@@ -12,6 +12,8 @@ Check out the content pages bundled with this sample book to see more.
 *kursiv*
 **fett**
 
+
+
 \begin{equation}
     cos(x)^2 + sin(x)^2 = 1
 \end{equation}
@@ -19,7 +21,6 @@ Check out the content pages bundled with this sample book to see more.
 <video width=100% controls>
       <source src="./_static/blob.mp4" type="video/mp4">
 </video>
-
 
 ```{tableofcontents}
 ```
