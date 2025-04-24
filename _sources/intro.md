@@ -1,18 +1,35 @@
-# Hallo Helene, das ist unsere Website!
+# Rolling-Bouncing Ball
 
-## Und es ist einfacher als LaTeX.
+**Event-based mixed DAE/ODE-simulation of mass points.**
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+````{card}
+Supervisor: **Dipl-Ing. Dr.techn. Martin Bicher**
+^^^
+Authors:
+**Helene Rößler, Norbert Hammer**
++++
+project for Mathematische Modellbildung in der Systemsimulation, summer semester 2025
+````
 
-Check out the content pages bundled with this sample book to see more.
+There is a BinderHub instance available for this project:
+```{button-link} https://mybinder.org/v2/gh/Homomorpheus/mathmod_ball_dae_ode/main?urlpath=%2Fdoc%2Ftree%2Fsrc%2Frolling-bouncing_ball.ipynb
+:color: primary
+:shadow:
+
+mybinder
+```
+
+The objective of this project is to demonstrate the simulation of a ball/mass point in 2D.
+The ball shall be able to interact with a curve by rolling along the curve, leaving it, bouncing off of it and landing back on it.
+This site documents the project.
 
 <video width=100% controls>
       <source src="./_static/blob.mp4" type="video/mp4">
 </video>
 
+<video width=100% controls>
+      <source src="./_static/bounce_threshold.mp4" type="video/mp4">
+</video>
 
 ```{tableofcontents}
 ```
