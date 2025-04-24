@@ -4,7 +4,8 @@
 format: jb-book
 root: intro
 chapters:
+  - file: genalpha
+  - file: rolling-bouncing_ball
+  - file: bounce_threshold
   - file: markdown
-  - file: notebooks
   - file: markdown-notebooks
-  - file: src/rolling-bouncing_ball

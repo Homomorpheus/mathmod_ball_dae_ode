@@ -53,10 +53,10 @@ class CurveConstraint:
             sol_vals = sol_lambda(xspace)
             mask = np.logical_not(np.isclose(sol_vals.imag, 0))
                 
-            self._xvals.append(np.ma.masked_array(xspace, mask))
-            self._yvals.append(np.ma.masked_array(np.real(sol_vals), mask))
-            # self._xvals.append(xspace[np.isclose(sol_vals.imag, 0)])
-            # self._yvals.append(np.real(sol_vals)[np.isclose(sol_vals.imag, 0)])
+            # self._xvals.append(np.ma.masked_array(xspace, mask))
+            # self._yvals.append(np.ma.masked_array(np.real(sol_vals), mask))
+            self._xvals.append(xspace[np.isclose(sol_vals.imag, 0)])
+            self._yvals.append(np.real(sol_vals)[np.isclose(sol_vals.imag, 0)])
 
     @property
     @functools.cache
@@ -146,7 +146,7 @@ class CurveConstraint:
                                              constraints=[{"type": "eq", "fun": lambdify([(self._x, self._y)], self._expression)}],
                                              options = {"initial_tr_radius": 5}
                                             )
-        if not projection.success:
+        if not projection.success and projection.maxcv >= 1e-4:
             print(projection)
             # raise RuntimeError(F"projection from {q} to curve unsuccessful")
         return projection.x
@@ -220,11 +220,13 @@ class Ball:
     "data storage and helper functions for an idealized ball; this class is time-independent"
     
     def __init__(self, curve: CurveConstraint, mass: float, gravity,
-                 curve_friction: float=0.0, bouncyness: float=0.5):
+                 curve_friction: float=0.0, bouncyness: float=0.5, bounce_threshold=0.1, name=""):
         self._curve = curve
         self._mass = mass
         self._curve_friction = curve_friction
         self.bouncyness = bouncyness
+        self.bounce_threshold = bounce_threshold
+        self.name = name
 
         # mass matrix for DAE with generalized alpha
         self.mass_mat_dae = np.array([[mass, 0, 0],
@@ -306,20 +308,14 @@ class Ball:
             # if wthe ball hits the wall
             if not self._curve.is_inside(qnew):
                 # ensure the position is valid
-                if current_step+step >= 500:
-                    print(F"frame {current_step+step}, q = {qnew}, v = {vnew}")
-                    qnew[:] = self._curve.project_to_curve(qnew)
-                    print(F"err_after = {self._curve._expression.evalf(subs={self._curve._x: qnew[0], self._curve._y: qnew[1]})}")
-                    print(self._curve.normal_vec(qnew))
-                else:
-                    qnew[:] = self._curve.project_to_curve(qnew)
+                qnew[:] = self._curve.project_to_curve(qnew)
                 
                 normal = self._curve.normal_vec(qnew)
                 tangent = self._curve.tangent_vec(qnew)
                 # normal velocity **after** bounce
                 normal_vel = - self.bouncyness*np.dot(normal, vnew)
                 
-                if np.abs(normal_vel) <= 0.1: # rollen: unendlich viele bounces, dazu mehr für Präsentation, mehr Kurven, mehr Bälle - Unterschied, Trajektorien nachmalen, PDF von Website
+                if np.abs(normal_vel) <= self.bounce_threshold:
                     return True
                 else:
                     vnew[:] = np.dot(vnew, tangent)*tangent + normal_vel*normal
