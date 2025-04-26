@@ -13,6 +13,7 @@ import sympy
 from sympy import *
 import numpy as np
 import scipy
+import matplotlib.patheffects
 
 import solvers
 
@@ -23,7 +24,7 @@ class CurveConstraint:
     ypadding: float
     
     def __init__(self, equation_expression: sympy.core.expr.Expr, x: sympy.core.symbol.Symbol,
-                 y: sympy.core.symbol.Symbol, inside: Literal["positive", "negative"], xlim, ypadding=0.3):
+                 y: sympy.core.symbol.Symbol, inside: Literal["positive", "negative"], xlim, ypadding=0.3, tick_length=0.5):
         
         self._expression = equation_expression # sympy curve description expressed in x and y
         self._expression_gradient = [diff(equation_expression, x), diff(equation_expression, y)]
@@ -36,6 +37,7 @@ class CurveConstraint:
         self._inside = inside
         self.xlim = xlim
         self.ypadding = 0.3
+        self.tick_length = tick_length
 
         self.generate_plotcurves()
 
@@ -86,7 +88,21 @@ class CurveConstraint:
     def plot(self, ax, color="black"):
         "plot the curve represented by the class instance"
         for x, y in zip(self._xvals, self._yvals):
-            ax.plot(x, y, color=color)
+            if len(x) == 0:
+                continue
+                
+            median_x = x[int(len(x)/2)]
+            median_y = y[int(len(x)/2)]
+            midpoint_normal = self.normal_vec(np.array([median_x, median_y]))
+
+            # does outward normal vector look upward or downward? -> set tick angle
+            # see https://matplotlib.org/stable/api/patheffects_api.html#matplotlib.patheffects.withTickedStroke
+            if midpoint_normal[1] > 0:
+                tick_angle = 45.0
+            else:
+                tick_angle = -45.0
+                
+            ax.plot(x, y, color=color, path_effects=[matplotlib.patheffects.withTickedStroke(angle=tick_angle, length=self.tick_length)])
 
     def fulfills_constraint(self, q, atol=1e-1)->np.ndarray:
         error = self._expression.evalf(subs={self._x: q[0], self._y: q[1]})
@@ -220,11 +236,13 @@ class Ball:
     "data storage and helper functions for an idealized ball; this class is time-independent"
     
     def __init__(self, curve: CurveConstraint, mass: float, gravity,
-                 curve_friction: float=0.0, bouncyness: float=0.5, bounce_threshold=0.1, name=""):
+                 curve_friction: float=0.0, normal_cor: float=0.5, tangential_cor: float=1.0, bounce_threshold=0.1, name=""):
         self._curve = curve
         self._mass = mass
         self._curve_friction = curve_friction
-        self.bouncyness = bouncyness
+        # COR = coefficient of restitution
+        self.normal_cor = normal_cor
+        self.tangential_cor = tangential_cor
         self.bounce_threshold = bounce_threshold
         self.name = name
 
@@ -305,7 +323,7 @@ class Ball:
 
             terminate = callback(current_step+step, qnew, vnew, error, mode="ode")
 
-            # if wthe ball hits the wall
+            # if the ball hits the wall
             if not self._curve.is_inside(qnew):
                 # ensure the position is valid
                 qnew[:] = self._curve.project_to_curve(qnew)
@@ -313,12 +331,12 @@ class Ball:
                 normal = self._curve.normal_vec(qnew)
                 tangent = self._curve.tangent_vec(qnew)
                 # normal velocity **after** bounce
-                normal_vel = - self.bouncyness*np.dot(normal, vnew)
+                normal_vel = - self.normal_cor*np.dot(normal, vnew)
                 
-                if np.abs(normal_vel) <= self.bounce_threshold:
+                if np.abs(normal_vel) <= self.bounce_threshold and not self.determine_liftoff(qnew, np.zeros(2)):
                     return True
                 else:
-                    vnew[:] = np.dot(vnew, tangent)*tangent + normal_vel*normal
+                    vnew[:] = self.tangential_cor*np.dot(vnew, tangent)*tangent + normal_vel*normal
 
             return terminate
 
