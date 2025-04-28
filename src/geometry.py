@@ -53,7 +53,7 @@ class CurveConstraint:
 
         for sol_lambda in self._solution_lambdas:
             sol_vals = sol_lambda(xspace)
-            mask = np.logical_not(np.isclose(sol_vals.imag, 0))
+            # mask = np.logical_not(np.isclose(sol_vals.imag, 0))
                 
             # self._xvals.append(np.ma.masked_array(xspace, mask))
             # self._yvals.append(np.ma.masked_array(np.real(sol_vals), mask))
@@ -348,12 +348,16 @@ class Ball:
             qold = qold[0:2]
             vold = vold[0:2]
 
-            old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_ode, np.zeros((2,2)), lambda q, v: self._mass*self._gravity(q, v), steps-step, t_end, callback_ode)
+            old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_ode, np.zeros((2,2)),
+                                                      lambda q, v: self._mass*self._gravity(q, v), steps-step, t_end, callback_ode
+                                                     )
             qold, vold = self.ode_data_to_dae_data(old)
             step += step_out
         
         while step < steps:
-            old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_dae, self.damping_mat, self.force, steps - step, t_end, callback_dae)
+            old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_dae, self.damping_mat, self.force, steps - step,
+                                                      t_end, callback_dae
+                                                     )
             qold = old[0:2]
             vold = old[3:5]
             step += step_out
@@ -361,7 +365,9 @@ class Ball:
             if step >= steps:
                 break
 
-            old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_ode, np.zeros((2,2)), lambda q, v: self._mass*self._gravity(q, v), steps-step, t_end, callback_ode)
+            old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_ode, np.zeros((2,2)),
+                                                      lambda q, v: self._mass*self._gravity(q, v), steps-step, t_end, callback_ode
+                                                     )
             qold, vold = self.ode_data_to_dae_data(old)
             step += step_out
             
