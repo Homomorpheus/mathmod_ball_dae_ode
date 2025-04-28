@@ -349,14 +349,15 @@ class Ball:
             vold = vold[0:2]
 
             old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_ode, np.zeros((2,2)),
-                                                      lambda q, v: self._mass*self._gravity(q, v), steps-step, t_end, callback_ode
+                                                      lambda q, v: self._mass*self._gravity(q, v), steps-step,
+                                                      t_end * (steps - step)/steps, callback_ode
                                                      )
             qold, vold = self.ode_data_to_dae_data(old)
             step += step_out
         
         while step < steps:
             old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_dae, self.damping_mat, self.force, steps - step,
-                                                      t_end, callback_dae
+                                                      t_end * (steps - step)/steps, callback_dae
                                                      )
             qold = old[0:2]
             vold = old[3:5]
@@ -366,7 +367,8 @@ class Ball:
                 break
 
             old, step_out = solvers.generalized_alpha(qold, vold, self.mass_mat_ode, np.zeros((2,2)),
-                                                      lambda q, v: self._mass*self._gravity(q, v), steps-step, t_end, callback_ode
+                                                      lambda q, v: self._mass*self._gravity(q, v), steps-step,
+                                                      t_end * (steps - step)/steps, callback_ode
                                                      )
             qold, vold = self.ode_data_to_dae_data(old)
             step += step_out
