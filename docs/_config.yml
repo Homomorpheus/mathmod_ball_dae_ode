@@ -1,14 +1,16 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: My sample book
-author: The Jupyter Book Community
+title: Rolling-bouncing ball
+author: Helene Rößler, Norbert Hammer
+copyright:
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: off
+  stderr_output: remove-warn
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -29,6 +31,7 @@ repository:
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
   use_repository_button: true
+#  baseurl: https://homomorpheus.github.io/mathmod_ball_dae_ode/
 
 sphinx:
   config:

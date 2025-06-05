@@ -1,12 +1,26 @@
 # Rolling-Bouncing Ball
 
+```{admonition} TO DO
+:class: warning
+
+add section on who did what
+derive equations of motion from Lagrangian physics
+```
+
 **Event-based mixed DAE/ODE-simulation of mass points.**
 
 ````{card}
 Supervisor: **Dipl-Ing. Dr.techn. Martin Bicher**
 ^^^
 Authors:
-**Helene Rößler, Norbert Hammer**
+
+**Helene Rößler** \
+12208195 \
+Bachelorstudium Technische Mathematik (033 201)
+
+**Norbert Hammer** \
+12225948 \
+Bachelorstudium Technische Mathematik (033 201)
 +++
 project for Mathematische Modellbildung in der Systemsimulation, summer semester 2025
 ````
@@ -19,8 +33,13 @@ There is a BinderHub instance available for this project:
 mybinder
 ```
 
+This document is available as a website under:
+<https://homomorpheus.github.io/mathmod_ball_dae_ode/intro.html>
+
+<img src="../_static/state_flowchart_2.svg">
+
 The objective of this project is to demonstrate the simulation of a ball/mass point in 2D.
-The ball shall be able to interact with a curve by rolling along the curve, leaving it, bouncing off of it and landing back on it.
+The ball is able to interact with a curve by rolling along the curve, leaving it, bouncing off of it and landing back on it.
 This site documents the project.
 
 <video width=100% controls>

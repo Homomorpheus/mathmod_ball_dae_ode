@@ -3,9 +3,18 @@
 
 format: jb-book
 root: intro
-chapters:
-  - file: genalpha
-  - file: rolling-bouncing_ball
-  - file: bounce_threshold
-  - file: markdown
-  - file: markdown-notebooks
+parts:
+  - caption: Theory
+    chapters:
+      - file: eqmotion
+      - file: newmark
+      - file: fcentrif
+      - file: technicalities
+  - caption: Examples
+    chapters:
+      - file: rolling-bouncing_ball
+      - file: donut
+      - file: bounce_threshold
+  - caption: Bibliography
+    chapters:
+      - file: bibliography
