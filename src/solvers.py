@@ -79,8 +79,7 @@ def generalized_alpha(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, C: np.ndarr
             
     return old, step
 
-
-def newmark(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, C: np.ndarray, force, steps, t_end, callback=None):
+def newmark(q0: np.ndarray, v0: np.ndarray, a0: np.ndarray, M: np.ndarray, C: np.ndarray, force, steps, t_end, callback=None):
     """
     Newmark method.
     For documentation on the algorithm, see:
@@ -89,6 +88,7 @@ def newmark(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, C: np.ndarray, force,
     Input:
         q0 -- starting position
         v0 -- starting velocity
+        a0 -- starting acceleration
         M  -- mass matrix
         C  -- damping matrix
         force -- force, a function of q (position)
@@ -101,8 +101,6 @@ def newmark(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, C: np.ndarray, force,
     
     h = t_end/steps
     dim = len(q0)
-    #starting value for a
-    a0 = np.zeros(dim)
 
     # state from before the timestep
     old = np.concatenate([q0, v0, a0])
@@ -139,3 +137,4 @@ def newmark(q0: np.ndarray, v0: np.ndarray, M: np.ndarray, C: np.ndarray, force,
             break
             
     return old, step
+    

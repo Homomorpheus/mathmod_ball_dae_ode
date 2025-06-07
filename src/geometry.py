@@ -221,7 +221,7 @@ class CurveConstraint:
         evaluates the centrifugal force formula; 
         note that the curvature is the inverse of radius of the circle in that point
         """
-        return mass * np.linalg.norm(v[:2])**2 * self.curvature(q)
+        return mass * np.linalg.norm(v[:2])**2 * np.abs(self.curvature(q))
 
     def is_inside(self, q)->bool:
         "using the inside argument of __init__, determine if q is inside the (closed) curve"
@@ -287,20 +287,29 @@ class Ball:
 
         qold = self._curve.project_to_curve(old[0:2])
         vold = old[2:4]
+        aold = old[4:6]
 
         tangent = self._curve.tangent_vec(qold)
-        v_project_tangent = np.dot(vold, tangent) * tangent
+        normal = - self._curve.normal_vec(qold)
+        
+        v_valid = np.dot(vold, tangent) * tangent
+
+        a_valid = np.dot(aold, tangent) * tangent + self._curve.curvature(qold) * np.dot(v_valid, v_valid) * normal
 
         q = np.pad(qold, (0,1), "constant")
-        v = np.pad(v_project_tangent, (0,1), "constant")
+        v = np.pad(v_valid, (0,1), "constant")
+        a = np.pad(a_valid, (0,1), "constant")
 
-        return q, v
+        return q, v, a
 
     def simulate(self, steps: int, t_end: float, q0: tuple, v_up:float, callback):
         "simulates ball movement using DAE+ODE"
 
         # ensure consistent starting values
         q0, v0 = self._curve.start_projection(q0, v_up)
+
+        normal = - self._curve.normal_vec(q0)
+        a0 = np.pad(self._curve.curvature(q0) * np.dot(v0, v0) * normal, (0, 1), "constant")
 
         step = 0
 
@@ -342,34 +351,37 @@ class Ball:
 
         qold = q0
         vold = v0
+        aold = a0
 
         # if we start airborne
         if self.determine_liftoff(qold, vold):
             qold = qold[0:2]
             vold = vold[0:2]
+            aold = aold[0:2]
 
-            old, step_out = solvers.newmark(qold, vold, self.mass_mat_ode, np.zeros((2,2)),
+            old, step_out = solvers.newmark(qold, vold, aold, self.mass_mat_ode, np.zeros((2,2)),
                                             lambda q, v: self._mass*self._gravity(q, v), steps-step,
                                             t_end * (steps - step)/steps, callback_ode
                                             )
-            qold, vold = self.ode_data_to_dae_data(old)
+            qold, vold, aold = self.ode_data_to_dae_data(old)
             step += step_out
         
         while step < steps:
-            old, step_out = solvers.newmark(qold, vold, self.mass_mat_dae, self.damping_mat, self.force, steps - step,
+            old, step_out = solvers.newmark(qold, vold, aold, self.mass_mat_dae, self.damping_mat, self.force, steps - step,
                                             t_end * (steps - step)/steps, callback_dae
                                             )
             qold = old[0:2]
             vold = old[3:5]
+            aold = old[6:8]
             step += step_out
 
             if step >= steps:
                 break
 
-            old, step_out = solvers.newmark(qold, vold, self.mass_mat_ode, np.zeros((2,2)),
+            old, step_out = solvers.newmark(qold, vold, aold, self.mass_mat_ode, np.zeros((2,2)),
                                             lambda q, v: self._mass*self._gravity(q, v), steps-step,
                                             t_end * (steps - step)/steps, callback_ode
                                             )
-            qold, vold = self.ode_data_to_dae_data(old)
+            qold, vold, aold = self.ode_data_to_dae_data(old)
             step += step_out
             
