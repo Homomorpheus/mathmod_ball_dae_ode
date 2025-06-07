@@ -3,7 +3,9 @@
 ```{admonition} TO DO
 :class: warning
 
-add section on who did what
+add section on who did what \
+section on normal and tangent vectors \
+switch DAE <-> ODE
 
 consider: \
 Why is constraint force not equal to centrifugal force? \
@@ -39,8 +41,6 @@ mybinder
 
 This document is available as a website under:
 <https://homomorpheus.github.io/mathmod_ball_dae_ode/intro.html>
-
-<img src="../_static/state_flowchart_2.svg">
 
 The objective of this project is to demonstrate the simulation of a ball/mass point in 2D.
 The ball is able to interact with a curve by rolling along the curve, leaving it, bouncing off of it and landing back on it.

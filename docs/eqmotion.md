@@ -1,7 +1,7 @@
 # Equations of motion for constrained mechanical systems
 
 Let $q(t) \in \mathbb{R}^2$ be the position of a mass point (ball) with mass $m$.
-Assume that the mass point is subjected to a force $F$ and a constraint $G(q)$ with Lagrange parameter $\lambda$.
+Assume that the mass point is subjected to a force $F$ and a constraint $G(q) \in C^1$ with Lagrange parameter $\lambda$.
 If we now define the mass matrix
 \begin{equation*}
   M :=

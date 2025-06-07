@@ -9,6 +9,7 @@ parts:
       - file: eqmotion
       - file: newmark
       - file: fcentrif
+      - file: events
       - file: technicalities
   - caption: Examples
     chapters:
