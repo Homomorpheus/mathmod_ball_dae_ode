@@ -4,7 +4,11 @@
 :class: warning
 
 add section on who did what
-derive equations of motion from Lagrangian physics
+
+consider: \
+Why is constraint force not equal to centrifugal force? \
+derive equations of motion from Lagrangian physics \
+derive centrifugal force formula from vectorial version (see commented out section)
 ```
 
 **Event-based mixed DAE/ODE-simulation of mass points.**

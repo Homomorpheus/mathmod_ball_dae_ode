@@ -17,11 +17,11 @@ If we now introduce a velocity-dependent damping factor $c$ and define a damping
 \end{equation*}
 we get
 \begin{equation*}
-  F = M \ddot{x} + M \dot{x}.
+  F = M \ddot{x} + C \dot{x}.
 \end{equation*}
 
-Now let $x_n, v_n := \dot{x}_n, a_n := \ddot{x}_n$ be position, velocity, and acceleration at 
-timestep $t_n$. To approximate their values at $t_{n+1} := t_n + h$ the Newmark-$\beta$ method 
+Now let $x_n, v_n := \dot{x}_n, a_n := \ddot{x}_n$ be position, velocity, and acceleration at
+timestep $t_n$. To approximate their values at $t_{n+1} := t_n + h$ the Newmark-$\beta$ method
 (where $\beta = \frac{1}{4}, \gamma = \frac{1}{2}$) gives us the following equations:
 \begin{align*}
   F(x_{n+1}) &= M a_{n+1} + C v_{n+1}\\
@@ -30,4 +30,3 @@ timestep $t_n$. To approximate their values at $t_{n+1} := t_n + h$ the Newmark-
 \end{align*}
 
 {cite}`miau`
-
