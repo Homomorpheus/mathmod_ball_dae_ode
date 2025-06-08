@@ -28,7 +28,9 @@ where $g \in \mathbb{R}^2$ denotes a constant directional acceleration that serv
 Throughout the project, other forces have also been added to this.
 
 If we now define
-\begin{equation*}
+
+```{math}
+:label: eq:dae_eq
   \tilde{M} :=
   \begin{pmatrix}
     m & 0 & 0 \\
@@ -41,7 +43,8 @@ If we now define
     F + \lambda \nabla G(q)\\
     G(q)
   \end{pmatrix},
-\end{equation*}
+```
+
 
 Equation [](eq:motion) turns into
 \begin{equation*}
