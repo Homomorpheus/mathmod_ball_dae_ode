@@ -10,7 +10,7 @@ Given a parameterization $\varphi$ of a curve in $\mathbb{R}^2$, the curve's cur
 The problem is: In the current setting, the curve is not given by a parameterization, but implicitly: Via the equation $G(q)=0$.
 
 However, we can perform an affine transformation such that the point in question (any point on the curve) lies in the origin and the
-normal and tangent vector at that point are the new basis. (See figure below.) Then the implicit function theorem states that in some neighborhood,
+normal and tangent vector at that point are the new basis. (See figure below.) Then the implicit function theorem states that in some neighborhood
 $G(q)=0$ is solved by the graph of a function (which makes for a valid parameterization). {cite}`ana{Satz 6.69}` It also gives us the derivative of that function {cite}`ana{Korollar 6.70}`, and therefore also its second derivative.
 
 <img src="../_static/trafo.svg">
@@ -21,23 +21,23 @@ In the case of the curve describing the graph of a function $f$, we have $\varph
 \end{equation*}
 {cite}`curvature`
 
-Take a point $x_0$ on our curve, with inward unit normal vector $\nu$ and a unit tangent vector $t$.
+Take a point $x_0$ on our curve, with inward unit normal vector $\nu$ and a unit tangent vector $\tau$.
 These can be easily calculated:
 \begin{align*}
   \nu &= \frac{ \nabla G(x_0) }{ \| \nabla G(x_0) \| } \\
-  t &= (-\nu_2, \nu_1)
+  \tau &= (-\nu_2, \nu_1)
 \end{align*}
 {cite}`curv_formul{page 636f}`
 
 Neither translation nor rotation of space change the curvature of a curve.
-Therefore (and because $t$ is normal to $\nu$), we can transform our space in the sense of
+Therefore (and because $\tau$ is normal to $\nu$), we can transform our space in the sense of
 \begin{equation*}
-  (x, y) = \alpha t + \beta \nu + x_0.
+  (x, y) = \alpha \tau + \beta \nu + x_0.
 \end{equation*}
 
 Let
 \begin{equation*}
-  T(\alpha, \beta) := \alpha t + \beta \nu + x_0;
+  T(\alpha, \beta) := \alpha \tau + \beta \nu + x_0;
 \end{equation*}
 then we look at $T^{-1}(\varphi)$.
 Note that in our new affine space, $T^{-1}(\varphi)$ is defined by the equation $G(T(\alpha, \beta))=0$.
@@ -48,27 +48,27 @@ Also, the implicit function theorem tells us that for small $\alpha$,
 ```{math}
 :label: eq:f_diff
   f'(\alpha) = {\large - \frac{\frac{\partial G \circ T}{\partial \alpha}}{\frac{\partial G \circ T}{\partial \beta}} \Biggr\rvert_{\beta=f(\alpha)} }
-             = \frac{\nabla G(\alpha t + \beta \nu + x_0) \cdot t}{\nabla G(\alpha t + \beta \nu + x_0) \cdot \nu} \Biggr\rvert_{\beta=f(\alpha)}
-             = \frac{\nabla G(\alpha t + f(\alpha) \nu + x_0) \cdot t}{\nabla G(\alpha t + f(\alpha) \nu + x_0) \cdot \nu}
+             = \frac{\nabla G(\alpha \tau + \beta \nu + x_0) \cdot \tau}{\nabla G(\alpha \tau + \beta \nu + x_0) \cdot \nu} \Biggr\rvert_{\beta=f(\alpha)}
+             = \frac{\nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \tau}{\nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \nu}
 ```
 holds. {cite}`ana{Satz 6.69 and Korollar 6.70}`
 Inserting $\alpha = 0$ yields
 \begin{equation*}
-  f'(0) = - \frac{\nabla G(x_0) \cdot t}{\nabla G(x_0) \cdot \nu}
+  f'(0) = - \frac{\nabla G(x_0) \cdot \tau}{\nabla G(x_0) \cdot \nu}
 \end{equation*}
 
 However, {eq}`eq:f_diff` can also be used to obtain $f''$:
 \begin{align*}
-  f''(\alpha) = &- \frac{t^T H_G(\alpha t + f(\alpha) \nu + x_0)(t + f'(\alpha) \nu) \nabla G(\alpha t + f(\alpha) \nu + x_0) \cdot \nu
-                        }{(\nabla G(\alpha t + f(\alpha) \nu + x_0) \cdot \nu)^2} \\
-                &+ \frac{ \nabla G(\alpha t + f(\alpha) \nu + x_0) \cdot t \nu^T H_G(\alpha t + f(\alpha) \nu + x_0)(t + f'(\alpha) \nu)
-                        }{(\nabla G(\alpha t + f(\alpha) \nu + x_0) \cdot \nu)^2}
+  f''(\alpha) = &- \frac{\tau^T H_G(\alpha \tau + f(\alpha) \nu + x_0)(\tau + f'(\alpha) \nu) \nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \nu
+                        }{(\nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \nu)^2} \\
+                &+ \frac{ \nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \tau \nu^T H_G(\alpha \tau + f(\alpha) \nu + x_0)(\tau + f'(\alpha) \nu)
+                        }{(\nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \nu)^2}
 \end{align*}
 Here, $H_G$ denotes the hessian of $G$.
 
-For $\alpha = 0$ and $c := t + f'(0) \nu$, this amounts to
+For $\alpha = 0$ and $c := \tau + f'(0) \nu$, this amounts to
 \begin{equation*}
-  f''(0) = - \frac{t^T H_G(x_0)c G(x_0) \cdot \nu - G(x_0) \cdot t \nu^T H_G(x_0)c}{(\nabla G(x_0) \cdot \nu)^2}.
+  f''(0) = - \frac{\tau^T H_G(x_0)c G(x_0) \cdot \nu - G(x_0) \cdot \tau \nu^T H_G(x_0)c}{(\nabla G(x_0) \cdot \nu)^2}.
 \end{equation*}
 
 Now, all building blocks for the computation of the curvature are available.

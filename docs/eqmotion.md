@@ -66,7 +66,7 @@ the motion of our ball is described by
 
 In our case, we will mainly subject it to the gravitational force
 \begin{equation*}
-  F_g = mg
+  mg
 \end{equation*}
 where $g \in \mathbb{R}^2$ denotes a constant directional acceleration that serves to simulate gravity.
 Throughout the project, other forces have also been added to this.

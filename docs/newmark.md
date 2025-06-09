@@ -128,9 +128,9 @@ along a curve:
 ```{math}
 :label: eq:accel_start
 
-  \mathbf{\tilde{a}} = aT + \kappa v^2 N,
+  \mathbf{\tilde{a}} = a \tau + \kappa v^2 \nu,
 ```
 
-where $a$ and $v$ are tangential acceleration and velocity, $T$ and $N$ are tangent and normal
+where $a$ and $v$ are tangential acceleration and velocity, $\tau$ and $\nu$ are tangent and normal
 vector and $\kappa$ is the curvature of the curve, and set $a_0 = \tilde{a}$.
 {cite}`acceleration`

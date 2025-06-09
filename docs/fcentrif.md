@@ -60,7 +60,7 @@ we obtain that
     0
   \end{pmatrix}.
 \end{equation*}
-As a result, \| \dot{q} \| = |\omega_3| \|q\| = \| \omega \| r and therefore
+As a result, $\| \dot{q} \| = |\omega_3| \|q\| = \| \omega \| r$ and therefore
 \begin{equation*}
   F_c = m \frac{ \| \dot{q} \|^2 }{r}
 \end{equation*}
@@ -69,7 +69,7 @@ follows.
 ## On general curves
 
 However, this is not applicable when the motion of the particle is not exactly circular;
-after all, the formula above is depends on the radius of the circular motion.
+after all, the formula above depends on the radius of the circular motion.
 This can be mitigated by assuming the motion to be asymptotically circular.
 
 The osculating circle of a curve at a point is the circle that goes through that point

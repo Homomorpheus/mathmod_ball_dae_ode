@@ -23,16 +23,16 @@ The two important forces to consider are the gravitational force $F_g$ and the c
 $F_c$.
 To receive the component of gravity in the normal direction we compute the scalar product
 \begin{equation*}
-  F_g = g \cdot N
+  F_g = g \cdot \nu
 \end{equation*}
-where $g \in \mathbb{R}^{2}$ denotes the gravitational acceleration and $N \in \mathbb{R}^{2}$
+where $g \in \mathbb{R}^{2}$ denotes the gravitational acceleration and $\nu \in \mathbb{R}^{2}$
 the outwards normal vector.
 
 The total outwards normal force is then given by
 \begin{equation*}
-  F_N = F_g + F_c,
+  F_{\nu} = F_g + F_c,
 \end{equation*}
-and the ball lifts off as soon as $F_N \lt 0$, meaning the force pressing the ball towards the
+and the ball lifts off as soon as $F_{\nu} \lt 0$, meaning the force pressing the ball towards the
 curve is smaller than the one pushing it away.
 
 As soon as this happens we stop the Newmark solver for the DAE and turn to the ODE-setup to start
@@ -57,7 +57,7 @@ If the new normal velocity (see [](sec:impact)) lies below a certain threshold p
 makes the program switch from the ODE to the DAE mode. $q$ stays the same, the normal velocity gets set to zero.
 As for the acceleration, it is adapted to the velocity on the curve using {eq}`eq:accel_start`:
 \begin{equation*}
-  \mathbf{a}_{DAE} = (\mathbf{a}_{ODE}, T)T + \kappa \| \mathbf{v}_{DAE} \| ^2 N
+  \mathbf{a}_{DAE} = (\mathbf{a}_{ODE}, \tau)\tau + \kappa \| \mathbf{v}_{DAE} \| ^2 \nu
 \end{equation*}
 
 ### ODE ⇾ ODE
