@@ -15,4 +15,127 @@
 \begin{frame}{First Frame}
 Hello, world!
 \end{frame}
+
+\section{Newmark-Verfahren}
+
+\begin{frame}{Einführung}
+Ausgangssituation ist eine Bewegungsgleichung der Form:
+\begin{equation*}
+	F = M \ddot{x} + C \dot{x} + Kx
+\end{equation*}
+
+\begin{itemize}
+	\item $x(t) \in \mathbb{R}^{m}$: generalisierter Ortsvektor
+	\item $M, C, K \in \mathbb{R}^{m \times m}$: Massen-, Dämpfungs- und Steifigkeitsmatrix
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Allgemeine Form}
+	
+\begin{itemize}
+\item Ausgangswerte zum Zeitpunkt $t_n$
+\begin{align*}
+	x_n, \quad v_n := \dot{x}_n, \quad a_n := \ddot{x}_n.
+\end{align*}
+\item Näherung für $t_{n+1} = t_n + h$ ist allgemein gegeben durch:
+\begin{align*}
+	F_{n+1} &= M a_{n+1} + C v_{n+1} + K q_{n+1}\\
+	v_{n+1} &= v_{n} + h\left({\left(1 - \gamma\right) a_{n} + \gamma{a_{n+1}}}\right)\\
+	x_{n+1} &= x_{n} + h v_{n} + \frac{h^2}{2} \left({\left(1 - 2\beta\right) a_{n} + 2\beta a_{n+1}}\right)
+\end{align*}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Spezialfall}
+	
+\begin{itemize}
+	\item  $\beta = \frac{1}{4}, \gamma = \frac{1}{2}$ $\Rightarrow$ quadratische Genauigkeit
+	\item $K = \mathbf{0} \in \mathbb{R}^{m \times m}$  
+\end{itemize}
+Führt zu
+\begin{align*}
+	F(x_{n+1}) &= M a_{n+1} + C v_{n+1}\\
+	v_{n+1} &= v_n + \frac{h}{2} (a_n + a_{n+1})\\
+	x_{n+1} &= x_n + h v_n + \frac{h^2}{4} (a_n + a_{n+1}).
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{Setup für die ODE}
+
+\textbf{Fall:} Ball befindet sich in der Flugphase, wir lösen eine ODE\\
+\vspace{0.3cm}
+\textbf{Annahmen:}
+	\begin{itemize}
+		\item Dämpfung: $C = \mathbf{0} \in \mathbb{R}^{2 \times 2}$
+		\item Massenmatrix:
+		\[
+		M =
+		\begin{pmatrix}
+			m & 0 \\
+			0 & m
+		\end{pmatrix}
+		\]
+		\item Kraftvektor (Gravitation): \quad $F = m g$, \quad wobei $g \in \mathbb{R}^2$
+		\item Anfangswerte: $x_0, v_0$ und $a_0$ werden vom Algorithmus direkt als aktueller Zustand des Balls übernommen.
+	\end{itemize} 
+
+\end{frame}
+
+\begin{frame}{Setup für die DAE}
+\textbf{Fall:} Ball befindet sich in der Rollphase, wir lösen eine DAE\\
+\vspace{0.3cm}
+\textbf{Annahmen:}
+\begin{itemize}
+	\item Dämpfung (durch Dämpfungsfaktor $c \in \mathbb{R}$) und Masse: 
+	\begin{equation*}
+		C :=
+		\begin{pmatrix}
+			c & 0 & 0\\
+			0 & c & 0\\
+			0 & 0 & 0
+		\end{pmatrix},
+		\quad
+		M =
+		\begin{pmatrix}
+			m & 0 & 0 \\
+			0 & m & 0 \\
+			0 & 0 & 0
+		\end{pmatrix}
+	\end{equation*}
+	\item Kraftvektor: 
+	\[F = 
+	\begin{pmatrix}
+		mg + \lambda \nabla G(q)\\
+		G(q)
+	\end{pmatrix}.
+	\]
+\end{itemize} 
+
+\end{frame}
+
+
+\begin{frame}{Anfangswerte für die DAE}
+	
+\begin{itemize}
+	\item $x_0$: aktuelle Position des Balls
+	\item $v_0$: Tangentialgeschwindigkeit
+	\item $a_0$: Formel für Beschleunigung entlang einer Kurve:
+	\[
+	a_0 = a \tau + \kappa v^2 \nu
+	\]
+	
+	\qquad mit Tangentialvektor $\tau$, Normalvektor $\nu$ und\\
+	\qquad Krümmung der Bahn $\kappa$: 
+	
+	\item kein Startwert für $\lambda$ benötigt
+\end{itemize}
+
+\end{frame}
+	
+
 \end{document}
