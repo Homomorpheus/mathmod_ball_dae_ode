@@ -175,3 +175,9 @@ cython_debug/
 
 slides/aux/
 .ropeproject
+slides/main.aux
+slides/main.nav
+slides/main.out
+slides/main.snm
+slides/main.synctex.gz
+slides/main.toc
