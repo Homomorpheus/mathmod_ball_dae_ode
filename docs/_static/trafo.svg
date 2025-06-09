@@ -9,6 +9,9 @@
    inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
    sodipodi:docname="trafo.svg"
    version="1.0"
+   inkscape:export-filename="../../slides/trafo.png"
+   inkscape:export-xdpi="700"
+   inkscape:export-ydpi="700"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -81,9 +84,9 @@
      borderopacity="0.3"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.540463"
-     inkscape:cx="186.30762"
-     inkscape:cy="145.08625"
+     inkscape:zoom="4.9621027"
+     inkscape:cx="190.64499"
+     inkscape:cy="118.80044"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:window-width="1920"
@@ -162,10 +165,10 @@
     <path
        id="path4"
        style="fill:none;stroke:#000000;stroke-width:1.51181;stroke-linecap:round;marker-start:url(#ArrowWideHeavy);marker-end:url(#marker2)"
-       d="M 236.05289,158.56128 174.9659,112.34449 221.1827,51.257485"
+       d="M 148.68823,184.41813 174.5763,112.325 246.66945,138.21308"
        sodipodi:nodetypes="ccc"
-       inkscape:transform-center-x="-30.450907"
-       inkscape:transform-center-y="-6.9588575" />
+       inkscape:transform-center-x="-23.023407"
+       inkscape:transform-center-y="36.50333" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1.13386;stroke-linecap:round;stroke-dasharray:1.13386, 3.40158;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Triangle)"
        d="M 101.91741,220.06371 C 101.26825,125.93616 127.23447,94.12754 165.53464,97.37332"

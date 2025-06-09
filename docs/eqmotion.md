@@ -1,6 +1,6 @@
 # Equations of motion for constrained mechanical systems
 
-## From the principle of least action
+## On a curve - derivation of a DAE
 
 Let $q(t) \in \mathbb{R}^2$ be the position of a mass point (ball) with Lagrangian function $L$.
 Assume that the mass point is subjected to a constraint $G(q) \in C^2(\mathbb{R}^2, \mathbb{R})$ with Lagrange parameter $\lambda$.
@@ -94,4 +94,11 @@ If we now define
 Equation [](eq:motion) turns into
 \begin{equation*}
 \tilde{M} \begin{pmatrix} \ddot{q} \\ \ddot{\lambda} \end{pmatrix} = \tilde{F}.
+\end{equation*}
+
+## In free fall - derivation of an ODE
+
+In the case of a free fall, all of the above reduces to the well-known equation
+\begin{equation*}
+  F = M \ddot{q}.
 \end{equation*}
