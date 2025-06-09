@@ -5,7 +5,7 @@ In general we start out with an equation
 \begin{equation*}
   F = M \ddot{x} + C \dot{x} + Kx
 \end{equation*}
-where $x(t) \in \mathbb{R}^{m}$ is the position vector and $M, C, K \in \mathbb{R}^{m \times m}$ 
+where $x(t) \in \mathbb{R}^{m}$ is the position vector and $M, C, K \in \mathbb{R}^{m \times m}$
 denote mass, damping and stiffness matrix.
 
 Now let $x_n, v_n := \dot{x}_n, a_n := \ddot{x}_n$ be position, velocity, and acceleration at
@@ -17,11 +17,12 @@ gives us the following equations:
   v_{n+1} &= v_{n} + h\left({\left(1 - \gamma\right) a_{n} + \gamma{a_{n+1}}}\right)\\
   x_{n+1} &= x_{n} + h v_{n} + \frac{h^2}{2} \left({\left(1 - 2\beta\right) a_{n} + 2\beta a_{n+1}}\right)
 \end{align*}
-{cite}`miau`
+{cite}`newmark_analysis{page 2}`
 
-We will use the specific case $\beta = \frac{1}{4}, \gamma = \frac{1}{2}$ and 
-set $K = \mathbf{0} \in \mathbb{R}^{m \times m}$, since it is not required for the 
-project.
+<!-- This family of solvers is non-canonically symplectic and preserves a non-standard momentum. {cite}`newmark_sympl{page 3}` -->
+We will use the specific case $\beta = \frac{1}{4}, \gamma = \frac{1}{2}$ and
+set $K = \mathbf{0} \in \mathbb{R}^{m \times m}$, since it is not required for the
+project. In this case, the solver has quadratic accuracy. {cite}`newmark_analysis{page 2}`
 
 We end up with
 \begin{align*}
@@ -31,27 +32,27 @@ We end up with
 \end{align*}
 
 ## Setup for the ODE
-Let us first consider the flying phase, meaning the current position of the ball is not on the 
+Let us first consider the flying phase, meaning the current position of the ball is not on the
 curve and we need to solve an ODE.
 Here we set $C = \mathbf{0} \in \mathbb{R}^{2 \times 2}$, as well as
 \begin{equation*}
 M =
 \begin{pmatrix}
     m & 0 \\
-    0 & m 
+    0 & m
   \end{pmatrix}
   ~~~\text{ and }~~~
   F = mg
 \end{equation*}
 for mass $m \in \mathbb{R}$ and gravitational acceleration $g \in \mathbb{R}^{2}$.
 
-As initial values $x_0, v_0$ and $a_0$ the algorithm simply receives the current position, 
+As initial values $x_0, v_0$ and $a_0$ the algorithm simply receives the current position,
 velocity and acceleration of the ball.
 
 ## Setup for the DAE
-On the other hand, if the ball is currently in the rolling phase, we therefore are in a 
+On the other hand, if the ball is currently in the rolling phase, we therefore are in a
 constrained system and need to solve a DAE.
-In this case we set $M = \tilde{M}$ and $F = \tilde{F}$ as defined in [](eq:dae_eq). If we want 
+In this case we set $M = \tilde{M}$ and $F = \tilde{F}$ as defined in [](eq:dae_eq). If we want
 to add a velocity-dependent damping factor $c \in \mathbb{R}$, we define a damping matrix
 \begin{equation*}
   C :=
@@ -63,7 +64,7 @@ to add a velocity-dependent damping factor $c \in \mathbb{R}$, we define a dampi
 \end{equation*}
 otherwise we set $C = \mathbf{0} \in \mathbb{R}^{3 \times 3}$.
 
-Here the initial values are going to be a bit more complicated. 
+Here the initial values are going to be a bit more complicated.
 First, we devide the vector $x_n$ into
 \begin{equation*}
   x_n =
@@ -83,13 +84,13 @@ If we now split our Newmark equations in the same mannner, we get:
   &=
   \begin{pmatrix}
     m & 0 \\
-    0 & m 
+    0 & m
   \end{pmatrix}
   \ddot{q}_{n+1}
   +
   \begin{pmatrix}
     c & 0 \\
-    0 & c 
+    0 & c
   \end{pmatrix}
   \dot{q}_{n+1}\\
   G(q) &= 0\\
@@ -102,14 +103,14 @@ If we now split our Newmark equations in the same mannner, we get:
   \lambda_{n+1} &= \lambda_n + h \dot{\lambda}_n + \frac{h^2}{4} (\ddot{\lambda}_n + \ddot{\lambda}_{n+1})
 \end{align*}
 
-The Lagrange parameter $\lambda$ enforces the constraint $G(q)=0$ and is not needed to 
-determine $q_{n+1}$ or $\dot{q}_{n+1}$. 
+The Lagrange parameter $\lambda$ enforces the constraint $G(q)=0$ and is not needed to
+determine $q_{n+1}$ or $\dot{q}_{n+1}$.
 The value $\lambda_{n+1}$ is solved implicitly as part of the DAE system [](eq:dae_sys)
-and therefore does not require an initial value to compute. Since that also implies that initial 
-values for $\dot{\lambda}$ and $\ddot{\lambda}$ are not required, we will ignore those in the 
+and therefore does not require an initial value to compute. Since that also implies that initial
+values for $\dot{\lambda}$ and $\ddot{\lambda}$ are not required, we will ignore those in the
 consideration of initial velocity and acceleration.
 
-For the initial velocity we take a look at our constraint $G$. We know that 
+For the initial velocity we take a look at our constraint $G$. We know that
 \begin{equation*}
   G(q) = 0.
 \end{equation*}
@@ -119,14 +120,16 @@ Differentiation on both sides leads to
 \end{equation*}
 and since $\nabla G(q)$ is the  normal vector, that means that $v$ has to be tangential.
 {cite}`curv_formul{page 636f}`
-We simply project the current velocity of the ball to the tangent vector and use the result 
+We simply project the current velocity of the ball to the tangent vector and use the result
 as the initial value $v_0$.
 
-Lastly to determine the starting acceleration, we use the following formula for the acceleration 
+Lastly, to determine the starting acceleration, we use the following formula for the acceleration
 along a curve:
-\begin{equation*}
+```{math}
+:label: eq:accel_start
+
   \mathbf{\tilde{a}} = aT + \kappa v^2 N,
-\end{equation*}
-where $a$ and $v$ are tangential acceleration and velocity and $\kappa$ is the curvature of 
+```
+where $a$ and $v$ are tangential acceleration and velocity and $\kappa$ is the curvature of
 the curve, and set $a_0 = \tilde{a}$.
 {cite}`acceleration`

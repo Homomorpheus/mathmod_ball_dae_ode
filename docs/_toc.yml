@@ -7,12 +7,15 @@ parts:
   - caption: Theory
     chapters:
       - file: eqmotion
+      - file: curvature
       - file: newmark
       - file: fcentrif
       - file: events
       - file: technicalities
   - caption: Examples
     chapters:
+      - file: bead_wire
+      - file: bead_friction
       - file: rolling-bouncing_ball
       - file: donut
       - file: bounce_threshold
