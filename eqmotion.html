@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -350,7 +350,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-the-principle-of-least-action">From the principle of least action</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-a-curve-derivation-of-a-dae">On a curve - derivation of a DAE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-free-fall-derivation-of-an-ode">In free fall - derivation of an ODE</a></li>
 </ul>
             </nav>
         </div>
@@ -364,8 +365,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="equations-of-motion-for-constrained-mechanical-systems">
 <h1>Equations of motion for constrained mechanical systems<a class="headerlink" href="#equations-of-motion-for-constrained-mechanical-systems" title="Link to this heading">#</a></h1>
-<section id="from-the-principle-of-least-action">
-<h2>From the principle of least action<a class="headerlink" href="#from-the-principle-of-least-action" title="Link to this heading">#</a></h2>
+<section id="on-a-curve-derivation-of-a-dae">
+<h2>On a curve - derivation of a DAE<a class="headerlink" href="#on-a-curve-derivation-of-a-dae" title="Link to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(q(t) \in \mathbb{R}^2\)</span> be the position of a mass point (ball) with Lagrangian function <span class="math notranslate nohighlight">\(L\)</span>.
 Assume that the mass point is subjected to a constraint <span class="math notranslate nohighlight">\(G(q) \in C^2(\mathbb{R}^2, \mathbb{R})\)</span> with Lagrange parameter <span class="math notranslate nohighlight">\(\lambda\)</span>.
 Then the action of the object is given by</p>
@@ -451,6 +452,14 @@ Throughout the project, other forces have also been added to this.</p>
 \tilde{M} \begin{pmatrix} \ddot{q} \\ \ddot{\lambda} \end{pmatrix} = \tilde{F}.
 \end{equation*}\]</div>
 </section>
+<section id="in-free-fall-derivation-of-an-ode">
+<h2>In free fall - derivation of an ODE<a class="headerlink" href="#in-free-fall-derivation-of-an-ode" title="Link to this heading">#</a></h2>
+<p>In the case of a free fall, all of the above reduces to the well-known equation</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  F = M \ddot{q}.
+\end{equation*}\]</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -518,7 +527,8 @@ Throughout the project, other forces have also been added to this.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-the-principle-of-least-action">From the principle of least action</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-a-curve-derivation-of-a-dae">On a curve - derivation of a DAE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-free-fall-derivation-of-an-ode">In free fall - derivation of an ODE</a></li>
 </ul>
   </nav></div>
 

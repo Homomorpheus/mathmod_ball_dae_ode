@@ -13,7 +13,7 @@ However, we can perform an affine transformation such that the point at which we
 normal and tangent vector at that point are the new basis. (See figure below.) Then the implicit function theorem states that in some neighborhood
 $G(q)=0$ is solved by the graph of a function (which makes for a valid parameterization). {cite}`ana{Satz 6.69}` It also gives us the derivative of that function {cite}`ana{Korollar 6.70}`, and therefore also its second derivative.
 
-<img src="../_static/trafo.svg">
+<img src="./_static/trafo.svg">
 
 Then the implicit function theorem states that in some neighborhood,
 $G(q)=0$ is solved by the graph of a function (which makes for a valid parameterization). {cite}`ana{Satz 6.69}` It also gives us the derivative of that function {cite}`ana{Korollar 6.70}`, and therefore also its second derivative.
