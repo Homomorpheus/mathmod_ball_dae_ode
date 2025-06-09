@@ -9,11 +9,14 @@ Given a parameterization $\varphi$ of a curve in $\mathbb{R}^2$, the curve's cur
 {cite}`curvature`
 The problem is: In the current setting, the curve is not given by a parameterization, but implicitly: Via the equation $G(q)=0$.
 
-However, we can perform an affine transformation such that the point in question (any point on the curve) lies in the origin and the
+However, we can perform an affine transformation such that the point at which we want to compute the curvature lies in the origin and the
 normal and tangent vector at that point are the new basis. (See figure below.) Then the implicit function theorem states that in some neighborhood
 $G(q)=0$ is solved by the graph of a function (which makes for a valid parameterization). {cite}`ana{Satz 6.69}` It also gives us the derivative of that function {cite}`ana{Korollar 6.70}`, and therefore also its second derivative.
 
 <img src="../_static/trafo.svg">
+
+Then the implicit function theorem states that in some neighborhood,
+$G(q)=0$ is solved by the graph of a function (which makes for a valid parameterization). {cite}`ana{Satz 6.69}` It also gives us the derivative of that function {cite}`ana{Korollar 6.70}`, and therefore also its second derivative.
 
 In the case of the curve describing the graph of a function $f$, we have $\varphi(t) = (t, f(t)$). Then the curvature formula simplifies to
 \begin{equation*}
@@ -37,17 +40,17 @@ Therefore (and because $\tau$ is normal to $\nu$), we can transform our space in
 
 Let
 \begin{equation*}
-  T(\alpha, \beta) := \alpha \tau + \beta \nu + x_0;
+  R(\alpha, \beta) := \alpha \tau + \beta \nu + x_0;
 \end{equation*}
-then we look at $T^{-1}(\varphi)$.
-Note that in our new affine space, $T^{-1}(\varphi)$ is defined by the equation $G(T(\alpha, \beta))=0$.
+then we look at $R^{-1}(\varphi)$.
+Note that in our new affine space, $R^{-1}(\varphi)$ is defined by the equation $G(R(\alpha, \beta))=0$.
 
-Now, the implicit function theorem gives us a locally defined function $f$ that describes a part of $T^{-1}(\varphi)$.
+Now, the implicit function theorem gives us a locally defined function $f$ that describes a part of $R^{-1}(\varphi)$.
 As $x_0$ lies on the curve, $f(0)=0$ holds.
 Also, the implicit function theorem tells us that for small $\alpha$,
 ```{math}
 :label: eq:f_diff
-  f'(\alpha) = {\large - \frac{\frac{\partial G \circ T}{\partial \alpha}}{\frac{\partial G \circ T}{\partial \beta}} \Biggr\rvert_{\beta=f(\alpha)} }
+  f'(\alpha) = {\large - \frac{\frac{\partial G \circ R}{\partial \alpha}}{\frac{\partial G \circ R}{\partial \beta}} \Biggr\rvert_{\beta=f(\alpha)} }
              = \frac{\nabla G(\alpha \tau + \beta \nu + x_0) \cdot \tau}{\nabla G(\alpha \tau + \beta \nu + x_0) \cdot \nu} \Biggr\rvert_{\beta=f(\alpha)}
              = \frac{\nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \tau}{\nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \nu}
 ```
@@ -68,7 +71,7 @@ Here, $H_G$ denotes the hessian of $G$.
 
 For $\alpha = 0$ and $c := \tau + f'(0) \nu$, this amounts to
 \begin{equation*}
-  f''(0) = - \frac{\tau^T H_G(x_0)c G(x_0) \cdot \nu - G(x_0) \cdot \tau \nu^T H_G(x_0)c}{(\nabla G(x_0) \cdot \nu)^2}.
+  f''(0) = - \frac{(\tau^T H_G(x_0)c ) \nabla G(x_0) \cdot \nu - \nabla G(x_0) \cdot \tau ( \nu^T H_G(x_0)c)}{(\nabla G(x_0) \cdot \nu)^2}.
 \end{equation*}
 
 Now, all building blocks for the computation of the curvature are available.

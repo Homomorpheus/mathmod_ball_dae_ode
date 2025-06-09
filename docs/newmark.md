@@ -5,7 +5,7 @@ In general we start out with an equation
 \begin{equation*}
   F = M \ddot{x} + C \dot{x} + Kx
 \end{equation*}
-where $x(t) \in \mathbb{R}^{m}$ is the position vector and $M, C, K \in \mathbb{R}^{m \times m}$
+where $x(t) \in \mathbb{R}^{m}$ is the (generalized) position vector and $M, C, K \in \mathbb{R}^{m \times m}$
 denote mass, damping and stiffness matrix.
 
 Now let $x_n, v_n := \dot{x}_n, a_n := \ddot{x}_n$ be position, velocity, and acceleration at
@@ -20,9 +20,9 @@ gives us the following equations:
 {cite}`newmark_analysis{page 2}`
 
 <!-- This family of solvers is non-canonically symplectic and preserves a non-standard momentum. {cite}`newmark_sympl{page 3}` -->
-We will use the specific case $\beta = \frac{1}{4}, \gamma = \frac{1}{2}$ and
-set $K = \mathbf{0} \in \mathbb{R}^{m \times m}$, since it is not required for the
-project. In this case, the solver has quadratic accuracy. {cite}`newmark_analysis{page 2}`
+We will use the specific case $\beta = \frac{1}{4}, \gamma = \frac{1}{2}$.
+In this case, the solver has quadratic accuracy. {cite}`newmark_analysis{page 2}`
+$K$ is not required for the project, we choose $K = \mathbf{0} \in \mathbb{R}^{m \times m}$.
 
 We end up with
 \begin{align*}
@@ -50,7 +50,7 @@ As initial values $x_0, v_0$ and $a_0$ the algorithm simply receives the current
 velocity and acceleration of the ball.
 
 ## Setup for the DAE
-On the other hand, if the ball is currently in the rolling phase, we therefore are in a
+On the other hand, if the ball is currently in the rolling phase, we are dealing with a
 constrained system and need to solve a DAE.
 In this case we set $M = \tilde{M}$ and $F = \tilde{F}$ as defined in [](eq:dae_eq). If we want
 to add a velocity-dependent damping factor $c \in \mathbb{R}$, we define a damping matrix
@@ -103,10 +103,10 @@ If we now split our Newmark equations in the same mannner, we get:
   \lambda_{n+1} &= \lambda_n + h \dot{\lambda}_n + \frac{h^2}{4} (\ddot{\lambda}_n + \ddot{\lambda}_{n+1})
 \end{align*}
 
-The Lagrange parameter $\lambda$ enforces the constraint $G(q)=0$ and is not needed to
+The Lagrange parameter $\lambda_n$ enforces the constraint $G(q_n)=0$ but is not needed to
 determine $q_{n+1}$ or $\dot{q}_{n+1}$.
 The value $\lambda_{n+1}$ is solved implicitly as part of the DAE system [](eq:dae_sys)
-and therefore does not require an initial value to compute. Since that also implies that initial
+and therefore $\lambda$ does not require an initial value to compute. Since that also implies that initial
 values for $\dot{\lambda}$ and $\ddot{\lambda}$ are not required, we will ignore those in the
 consideration of initial velocity and acceleration.
 

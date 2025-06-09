@@ -2,14 +2,14 @@
 
 ## From the principle of least action
 
-Let $q(t) \in \mathbb{R}^2$ be the position of a mass point (ball) with mass $m$ and Lagrangian function $L$.
-Assume that the mass point is subjected to a force $F$ and a constraint $G(q) \in C^2(\mathbb{R}^2, \mathbb{R})$ with Lagrange parameter $\lambda$.
+Let $q(t) \in \mathbb{R}^2$ be the position of a mass point (ball) with Lagrangian function $L$.
+Assume that the mass point is subjected to a constraint $G(q) \in C^2(\mathbb{R}^2, \mathbb{R})$ with Lagrange parameter $\lambda$.
 Then the action of the object is given by
 \begin{equation*}
   \tilde{S} = \int_0^T L(q, \dot{q}) + \lambda G(q) \ dt,
 \end{equation*}
-for $q(0), q(T)$ fixed. {cite}`leastaction{Equation 4}`
-The stationary condition $0 = \delta \tilde{S}$ under $\delta q(0) = \delta q(T) = 0$ yields
+for $q(0),~ q(T)$ fixed. {cite}`leastaction{Equation 4}`
+The stationary condition $0 = \delta \tilde{S}$ under the condition $\delta q(0) = \delta q(T) = 0$ yields
 \begin{align*}
   0 = \delta \tilde{S}
   & = \frac{\partial}{\partial \varepsilon } \int_0^T L(q + \varepsilon \delta q, \dot{q} + \varepsilon \dot{\delta q})
@@ -34,10 +34,11 @@ The resulting DAE is
   G(q) &= 0.
 ```
 
-For a mass point, we know that
+Let $U$ denote the potential energy of a mass point with mass $m$, and $T$ its kinetic energy.
+Also, let the mass point be subjected to a force $F$. Then we know that
 \begin{align*}
-  T(\dot{q}) &= \frac{1}{2} \dot{q} \cdot m \dot{q} ~~~~ \text{(kinetic energy)} \\
-  \nabla U(q) &= F ~~~~ \text{(potential energy)} \\
+  T(\dot{q}) &= \frac{1}{2} \dot{q} \cdot m \dot{q}\\
+  \nabla U(q) &= F \\
   L &= T(\dot{q}) - U(q).
 \end{align*}
 {cite}`theophys{page 178}`

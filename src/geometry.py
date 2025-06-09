@@ -22,17 +22,17 @@ class CurveConstraint:
     "holds an equation for a 2D curve"
     xlim: tuple[float]
     ypadding: float
-    
+
     def __init__(self, equation_expression: sympy.core.expr.Expr, x: sympy.core.symbol.Symbol,
                  y: sympy.core.symbol.Symbol, inside: Literal["positive", "negative"], xlim, ypadding=0.3, tick_length=0.5):
-        
+
         self._expression = equation_expression # sympy curve description expressed in x and y
         self._expression_gradient = [diff(equation_expression, x), diff(equation_expression, y)]
         self._expression_hessian = [[diff(equation_expression, var1, var2) for var1 in (x, y)] for var2 in (x, y)]
-        
+
         self._x = x
         self._y = y
-        
+
         assert inside in ("positive", "negative")
         self._inside = inside
         self.xlim = xlim
@@ -45,7 +45,7 @@ class CurveConstraint:
         "generates plottable numpy arrays from equation_expression"
         self._solutions = sympy.solve(self._expression, self._y)
         self._solution_lambdas = [lambdify(self._x,s) for s in self._solutions]
-        
+
         xspace = np.linspace(self.xlim[0], self.xlim[1], int(1e4), dtype=np.complex128)
 
         self._xvals = []
@@ -54,7 +54,7 @@ class CurveConstraint:
         for sol_lambda in self._solution_lambdas:
             sol_vals = sol_lambda(xspace)
             # mask = np.logical_not(np.isclose(sol_vals.imag, 0))
-                
+
             # self._xvals.append(np.ma.masked_array(xspace, mask))
             # self._yvals.append(np.ma.masked_array(np.real(sol_vals), mask))
             self._xvals.append(xspace[np.isclose(sol_vals.imag, 0)])
@@ -66,7 +66,7 @@ class CurveConstraint:
         "returns appropriate ylim for matplotlib axis"
         ymax = -np.inf
         ymin = np.inf
-        
+
         for yval in self._yvals:
             for y in yval:
                 if type(y) == np.ma.core.MaskedConstant:
@@ -90,7 +90,7 @@ class CurveConstraint:
         for x, y in zip(self._xvals, self._yvals):
             if len(x) == 0:
                 continue
-                
+
             median_x = x[int(len(x)/2)]
             median_y = y[int(len(x)/2)]
             midpoint_normal = self.normal_vec(np.array([median_x, median_y]))
@@ -101,7 +101,7 @@ class CurveConstraint:
                 tick_angle = 45.0
             else:
                 tick_angle = -45.0
-                
+
             ax.plot(x, y, color=color, path_effects=[matplotlib.patheffects.withTickedStroke(angle=tick_angle, length=self.tick_length)])
 
     def fulfills_constraint(self, q, atol=1e-1)->np.ndarray:
@@ -112,7 +112,7 @@ class CurveConstraint:
         "evaluate the gradient of the constraint function at a point q"
         gradient = (self._expression_gradient[0].evalf(subs={self._x: q[0], self._y: q[1]}),
                     self._expression_gradient[1].evalf(subs={self._x: q[0], self._y: q[1]}))
-        
+
         return np.array(gradient, dtype=np.float64)
 
     def eval_hessian(self, q)->np.ndarray:
@@ -133,13 +133,13 @@ class CurveConstraint:
         # make it look outward
         if self._inside == "positive":
             grad *= -1
-        
+
         return grad/np.linalg.norm(grad)
 
     def tangent_vec(self, q)->np.ndarray:
         "tangent vector of length 1, at point q"
         assert self.fulfills_constraint(q)
-        
+
         normal = self.normal_vec(q)
         tangent = np.array([ - normal[1], normal[0]], dtype=np.float64)
         return tangent
@@ -147,7 +147,7 @@ class CurveConstraint:
     def tangent_velocity(self, q, v_up):
         "for a point q fulfilling the constraint, give a valid velocity vector of length v_up, looking 'upward' if possible"
         assert self.fulfills_constraint(q)
-        
+
         tangent = self.tangent_vec(q)
 
         # make tangent vector look upward, if possible
@@ -218,10 +218,10 @@ class CurveConstraint:
 
     def centrifugal_force(self, mass: float, q: np.ndarray, v: np.ndarray)->float:
         """
-        evaluates the centrifugal force formula; 
+        evaluates the centrifugal force formula;
         note that the curvature is the inverse of radius of the circle in that point
         """
-        return mass * np.linalg.norm(v[:2])**2 * np.abs(self.curvature(q))
+        return mass * np.linalg.norm(v[:2])**2 * self.curvature(q)
 
     def is_inside(self, q)->bool:
         "using the inside argument of __init__, determine if q is inside the (closed) curve"
@@ -234,7 +234,7 @@ class CurveConstraint:
 
 class Ball:
     "data storage and helper functions for an idealized ball; this class is time-independent"
-    
+
     def __init__(self, curve: CurveConstraint, mass: float, gravity,
                  curve_friction: float=0.0, normal_cor: float=0.5, tangential_cor: float=1.0, bounce_threshold=0.1, name=""):
         self._curve = curve
@@ -269,14 +269,14 @@ class Ball:
     def total_physical_normal_force(self, q: np.ndarray, v: np.ndarray)->float:
         "for position q and velocity v, compute the forces acting on the ball, without those from lagrange parameters"
         normal = self._curve.normal_vec(q) # outward normal vector
-    
-        normal_force_outward = np.dot(self._gravity(q,v), normal) + self._curve.centrifugal_force(self._mass, q, v)
+
+        normal_force_outward = np.dot(self._mass*self._gravity(q,v), normal) + self._curve.centrifugal_force(self._mass, q, v)
         return normal_force_outward
 
     def determine_liftoff(self, q: np.ndarray, v: np.ndarray)->bool:
         "for position q and velocity v, determine whether or not the ball should leave the ground"
         normal_force_outward = self.total_physical_normal_force(q, v)
-    
+
         if normal_force_outward >= 0:
             return False
         else:
@@ -291,7 +291,7 @@ class Ball:
 
         tangent = self._curve.tangent_vec(qold)
         normal = - self._curve.normal_vec(qold)
-        
+
         v_valid = np.dot(vold, tangent) * tangent
 
         a_valid = np.dot(aold, tangent) * tangent + self._curve.curvature(qold) * np.dot(v_valid, v_valid) * normal
@@ -336,12 +336,12 @@ class Ball:
             if not self._curve.is_inside(qnew):
                 # ensure the position is valid
                 qnew[:] = self._curve.project_to_curve(qnew)
-                
+
                 normal = self._curve.normal_vec(qnew)
                 tangent = self._curve.tangent_vec(qnew)
                 # normal velocity **after** bounce
                 normal_vel = - self.normal_cor*np.dot(normal, vnew)
-                
+
                 if np.abs(normal_vel) <= self.bounce_threshold and not self.determine_liftoff(qnew, np.zeros(2)):
                     return True
                 else:
@@ -365,7 +365,7 @@ class Ball:
                                             )
             qold, vold, aold = self.ode_data_to_dae_data(old)
             step += step_out
-        
+
         while step < steps:
             old, step_out = solvers.newmark(qold, vold, aold, self.mass_mat_dae, self.damping_mat, self.force, steps - step,
                                             t_end * (steps - step)/steps, callback_dae
@@ -384,4 +384,3 @@ class Ball:
                                             )
             qold, vold, aold = self.ode_data_to_dae_data(old)
             step += step_out
-            

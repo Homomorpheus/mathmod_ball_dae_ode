@@ -1,15 +1,5 @@
 # Rolling-Bouncing Ball
 
-```{admonition} TO DO
-:class: warning
-
-is section on who did what good? \
-convergence analysis
-
-consider: \
-Why is constraint force not equal to centrifugal force? \
-```
-
 <h3>Event-based mixed DAE/ODE-simulation of mass points.</h3>
 
 ````{card}
@@ -63,7 +53,7 @@ This document is available as a website under:
 ```{card} Work distribution
 
 Helene Rößler: ODE/DAE numerics, state switching \
-Norbert Hammer: equations of motion, centrifugal force calculation\
+Norbert Hammer: equations of motion, curvature calculation
 ```
 
 ```{tableofcontents}

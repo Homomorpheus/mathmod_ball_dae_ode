@@ -16,15 +16,14 @@ around the origin of the reference frame.
 Then the centrifugal force acting on the particle is
 
 $$
-  \hat{F}_c = m \omega \times (q \times \omega).
+  \hat{F}_c = m ~ \omega \times (q \times \omega).
 $$
 
-{cite}`Demtröder{page 82}` This is the vector form of that force.
-
-This can be simplified using the identity $a \times (b \times c) = b(a \cdot c) - c(a \cdot b)$ {cite}`Demtröder{page 409, Equation 13.9}`:
+{cite}`Demtröder{page 82}` This vector form can be simplified using the identity
+$a \times (b \times c) = b(a \cdot c) - c(a \cdot b)$ {cite}`Demtröder{page 409, Equation 13.9}`:
 
 $$
-  \hat{F}_c = m \omega \times (q \times \omega) = m(q (\omega \cdot \omega) - \omega (\underbrace{\omega \cdot q}_{=0})) = m q \| \omega \|^2
+  \hat{F}_c = m ~ \omega \times (q \times \omega) = m(q (\omega \cdot \omega) - \omega (\underbrace{\omega \cdot q}_{=0})) = m q \| \omega \|^2
 $$
 
 This vectorial force is normal to the curve. Since we are only interested in the normal part of the force, we define
@@ -33,7 +32,7 @@ $$
   F_c := \| \hat{F}_c \| = m r \| \omega \|^2,
 $$
 
-where $r$ is the radius of the circular curve $q$.
+where $r$ is the radius of the circular curve.
 In addition, we know that $\dot{q} = \omega \times q$ {cite}`Holm{Equation 2.1.7, Remark 2.1.16}`.
 As (without loss of generality)
 \begin{align*}
@@ -85,6 +84,7 @@ This turns the formula for the centrifugal force into
   F_c = m \| \dot{q} \|^2 | \kappa |.
 \end{equation*}
 
+Note that the direction of the centrifugal force is given by the sign of $\kappa$.
 
 <!--
 order https://www.worldscientific.com/worldscibooks/10.1142/p802#t=aboutBook ??? \
