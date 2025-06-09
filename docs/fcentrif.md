@@ -9,8 +9,9 @@ surface/curve.
 Note that the centrifugal force does not have to correspond to the constraint
 force $\lambda \nabla G(q)$ {cite}`theophys{page 202}`.
 
-## On a circle
+````{dropdown} Excursion: Centrifugal force on a circle
 
+<!-- :open: -->
 Let $m, q(t)$ and $\omega(t)$ be the mass, position and angular velocity of a particle on a circular curve
 around the origin of the reference frame.
 Then the centrifugal force acting on the particle is
@@ -65,26 +66,29 @@ As a result, $\| \dot{q} \| = |\omega_3| \|q\| = \| \omega \| r$ and therefore
 \end{equation*}
 follows.
 
-## On general curves
+$\kappa = r^{-1}$ {cite}`curv_formul{Example 3.1}` implies
 
-However, this is not applicable when the motion of the particle is not exactly circular;
-after all, the formula above depends on the radius of the circular motion.
-This can be mitigated by assuming the motion to be asymptotically circular.
+```{math}
+:label: eq:cent_circ
 
-The osculating circle of a curve at a point is the circle that goes through that point
-and has the same tangent and curvature $\kappa$ at that point. Its radius is
+  F_c = m \| \dot{q} \|^2 \kappa.
+```
 
-$$
-r = \frac{1}{ | \kappa | }.
-$$
-{cite}`osc`
+````
 
-This turns the formula for the centrifugal force into
+Take a body that is constrained to move along a curve.
+Then we already know from {eq}`eq:accel_start` that
+the normal component of its acceleration is
 \begin{equation*}
-  F_c = m \| \dot{q} \|^2 | \kappa |.
+  \| \dot{q} \|^2 \kappa.
 \end{equation*}
 
-Note that the direction of the centrifugal force is given by the sign of $\kappa$.
+In accordance with Newton's law, we define the centrifugal force to be
+\begin{equation*}
+  F_c := m \| \dot{q} \|^2 \kappa.
+\end{equation*}
+
+On circles, this coincides with the usual definition, see {eq}`eq:cent_circ`.
 
 <!--
 order https://www.worldscientific.com/worldscibooks/10.1142/p802#t=aboutBook ??? \

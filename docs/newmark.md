@@ -118,7 +118,7 @@ Differentiation on both sides leads to
 \begin{equation*}
   \nabla G(q)v = 0
 \end{equation*}
-and since $\nabla G(q)$ is the  normal vector, that means that $v$ has to be tangential.
+and since $\nabla G(q)$ is the normal vector, that means that $v$ has to be tangential.
 {cite}`curv_formul{page 636f}`
 We simply project the current velocity of the ball to the tangent vector and use the result
 as the initial value $v_0$.
@@ -128,9 +128,32 @@ along a curve:
 ```{math}
 :label: eq:accel_start
 
-  \mathbf{\tilde{a}} = a \tau + \kappa v^2 \nu,
+  \mathbf{\tilde{a}} = a \tau + \kappa \| v \|^2 \nu,
 ```
 
 where $a$ and $v$ are tangential acceleration and velocity, $\tau$ and $\nu$ are tangent and normal
 vector and $\kappa$ is the curvature of the curve, and set $a_0 = \tilde{a}$.
-{cite}`acceleration`
+
+```{card}
+**Proof of {eq}`eq:accel_start`:**\
+Note that $q(t)$ - for a mass point on a curve - is a parametrization of
+(a part of) the curve.
+We know from above that the tangent vector at $q(t)$ can be written as
+\begin{equation*}
+  \tau(t) = \frac{\dot{q}(t)}{ \| \dot{q}(t) \| },
+\end{equation*}
+which implies $\dot{q} = \| \dot{q} \| \tau$.
+We also know that
+\begin{equation*}
+  \dot{\tau} = \kappa \| \dot{q} \| \nu.
+\end{equation*}
+(This is one of the "Frenet equations", adapted from {cite}`ana_curv{Equation 1.7}`
+under the consideration that $q$ is not an arc-length parameterisation.)
+Putting the above together yields
+\begin{equation*}
+  \mathbf{\tilde{a}} = \ddot{q} = \frac{\partial \| \dot{q} \| \tau}{\partial t}
+    = \frac{\partial \| \dot{q} \| }{\partial t}\tau + \| \dot{q} \| \dot{\tau}
+    = a \tau + \| v \| \dot{\tau}
+    = a \tau + \kappa \| v \|^2 \nu.
+\end{equation*}
+```

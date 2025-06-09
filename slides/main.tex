@@ -6,7 +6,7 @@
 \usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{graphicx}
-\usepackage{raleway}
+% \usepackage{raleway}
 
 \title{Rolling-bouncing ball - Dynamik eines Balles}
 \author{Helene Rößler, Norbert Hammer}
@@ -233,15 +233,23 @@ Führt zu
 
 \section{Zentrifugalkraft}
 
-\begin{frame}{Zentrifugalkraft auf einer Kurve}
+\begin{frame}{Zentrifugalkraft auf einer allgemeinen Kurve}
 \begin{itemize}
-    \item Massepunkt mit Position $q$, Masse $m$
-    \item offizielle Vektorform:
-        $$
-        \hat{F}_c = m ~ \omega \times (q \times \omega).
-        $$
-    \item für eine
+\item Wir wissen aus dem Kapitel über Newmark:
+    \begin{equation*}
+        \mathbf{a} = \textcolor{lightgray}{ a \tau + } \kappa \| v \|^2 \nu
+    \end{equation*}
+\item Also:
+        \begin{equation*}
+            F_c \coloneq m \| v \|^2 \kappa
+        \end{equation*}
+\item Normalkraft durch Bewegung auf Kurve; stimmt auf Kreis mit Zentrifugalkraft
+        überein
 \end{itemize}
+\end{frame}
+
+\begin{frame}[standout]
+    Gibt es Fragen?
 \end{frame}
 
 \end{document}
