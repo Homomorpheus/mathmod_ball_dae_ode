@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The generalized-\(\alpha\) solver &#8212; My sample book</title>
+    <title>Curvature of an implicit curve &#8212; Rolling-bouncing ball</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -62,11 +62,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'genalpha';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'curvature';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Rolling-Bouncing Ball" href="rolling-bouncing_ball.html" />
-    <link rel="prev" title="Rolling-Bouncing Ball" href="intro.html" />
+    <link rel="next" title="The Newmark time stepper" href="newmark.html" />
+    <link rel="prev" title="Equations of motion for constrained mechanical systems" href="eqmotion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -148,8 +148,8 @@
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Rolling-bouncing ball - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Rolling-bouncing ball - Home"/>
   
   
 </a></div>
@@ -170,12 +170,26 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">The generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> solver</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="eqmotion.html">Equations of motion for constrained mechanical systems</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Curvature of an implicit curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newmark.html">The Newmark time stepper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fcentrif.html">Calculation of the centrifugal force</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Switching states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technicalities.html">Technical details</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bead_wire.html">Bead on a wire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bead_friction.html">Bead with friction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rolling-bouncing_ball.html">Rolling-Bouncing Ball</a></li>
+<li class="toctree-l1"><a class="reference internal" href="donut.html">Donut shape</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bounce_threshold.html">Different Bounce Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -250,7 +264,7 @@
       
       
       
-      <li><a href="_sources/genalpha.md" target="_blank"
+      <li><a href="_sources/curvature.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -324,7 +338,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>The generalized-\alpha solver</h1>
+    <h1>Curvature of an implicit curve</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -338,9 +352,77 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="the-generalized-alpha-solver">
-<h1>The generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> solver<a class="headerlink" href="#the-generalized-alpha-solver" title="Link to this heading">#</a></h1>
-<p>This project uses the generalized-<span class="math notranslate nohighlight">\(\alpha\)</span> solver for both DAEs and ODEs.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="curvature-of-an-implicit-curve">
+<h1>Curvature of an implicit curve<a class="headerlink" href="#curvature-of-an-implicit-curve" title="Link to this heading">#</a></h1>
+<p>Throughout the project, it proved necessary to compute the curvature of the DAE’s constraint curve.</p>
+<p>Given a parameterization <span class="math notranslate nohighlight">\(\varphi\)</span> of a curve in <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span>, the curve’s curvature at any point <span class="math notranslate nohighlight">\(\varphi(t)\)</span> is given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  \kappa = \frac{\varphi_1'(t) \varphi_2''(t) - \varphi_2'(t) \varphi_1''(t)}{\| \varphi '(t) \|^3}.
+\end{equation*}\]</div>
+<p><span id="id1">[<a class="reference internal" href="bibliography.html#id7" title="Eric Weisstein. Curvature. Accessed: 2025-06-06. URL: https://mathworld.wolfram.com/Curvature.html.">Weia</a>]</span>
+The problem is: In the current setting, the curve is not given by a parameterization, but implicitly: Via the equation <span class="math notranslate nohighlight">\(G(q)=0\)</span>.</p>
+<p>However, we can perform an affine transformation such that the point at which we want to compute the curvature lies in the origin and the
+normal and tangent vector at that point are the new basis. (See figure below.) Then the implicit function theorem states that in some neighborhood
+<span class="math notranslate nohighlight">\(G(q)=0\)</span> is solved by the graph of a function (which makes for a valid parameterization). <span id="id2">[<a class="reference internal" href="bibliography.html#id10" title="Heinz W. Engl and Andreas Neubauer. Skriptum Analysis. Institute for industrial mathematics, Johannes Kepler university Linz, 2024.">EN24</a>, Satz 6.69]</span> It also gives us the derivative of that function <span id="id3">[<a class="reference internal" href="bibliography.html#id10" title="Heinz W. Engl and Andreas Neubauer. Skriptum Analysis. Institute for industrial mathematics, Johannes Kepler university Linz, 2024.">EN24</a>, Korollar 6.70]</span>, and therefore also its second derivative.</p>
+<img src="../_static/trafo.svg">
+<p>Then the implicit function theorem states that in some neighborhood,
+<span class="math notranslate nohighlight">\(G(q)=0\)</span> is solved by the graph of a function (which makes for a valid parameterization). <span id="id4">[<a class="reference internal" href="bibliography.html#id10" title="Heinz W. Engl and Andreas Neubauer. Skriptum Analysis. Institute for industrial mathematics, Johannes Kepler university Linz, 2024.">EN24</a>, Satz 6.69]</span> It also gives us the derivative of that function <span id="id5">[<a class="reference internal" href="bibliography.html#id10" title="Heinz W. Engl and Andreas Neubauer. Skriptum Analysis. Institute for industrial mathematics, Johannes Kepler university Linz, 2024.">EN24</a>, Korollar 6.70]</span>, and therefore also its second derivative.</p>
+<p>In the case of the curve describing the graph of a function <span class="math notranslate nohighlight">\(f\)</span>, we have <span class="math notranslate nohighlight">\(\varphi(t) = (t, f(t)\)</span>). Then the curvature formula simplifies to</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  \kappa = \frac{f''(t)}{(1 + f'(t)^2)^{3/2}}.
+\end{equation*}\]</div>
+<p><span id="id6">[<a class="reference internal" href="bibliography.html#id7" title="Eric Weisstein. Curvature. Accessed: 2025-06-06. URL: https://mathworld.wolfram.com/Curvature.html.">Weia</a>]</span></p>
+<p>Take a point <span class="math notranslate nohighlight">\(x_0\)</span> on our curve, with inward unit normal vector <span class="math notranslate nohighlight">\(\nu\)</span> and a unit tangent vector <span class="math notranslate nohighlight">\(\tau\)</span>.
+These can be easily calculated:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  \nu &amp;= \frac{ \nabla G(x_0) }{ \| \nabla G(x_0) \| } \\
+  \tau &amp;= (-\nu_2, \nu_1)
+\end{align*}\]</div>
+<p><span id="id7">[<a class="reference internal" href="bibliography.html#id11" title="Ron Goldman. Curvature formulas for implicit curves and surfaces. Computer Aided Geometric Design, 22(7):632-658, 2005. Geometric Modelling and Differential Geometry. URL: https://www.sciencedirect.com/science/article/pii/S0167839605000737, doi:https://doi.org/10.1016/j.cagd.2005.06.005.">Gol05</a>, page 636f]</span></p>
+<p>Neither translation nor rotation of space change the curvature of a curve.
+Therefore (and because <span class="math notranslate nohighlight">\(\tau\)</span> is normal to <span class="math notranslate nohighlight">\(\nu\)</span>), we can transform our space in the sense of</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  (x, y) = \alpha \tau + \beta \nu + x_0.
+\end{equation*}\]</div>
+<p>Let</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  R(\alpha, \beta) := \alpha \tau + \beta \nu + x_0;
+\end{equation*}\]</div>
+<p>then we look at <span class="math notranslate nohighlight">\(R^{-1}(\varphi)\)</span>.
+Note that in our new affine space, <span class="math notranslate nohighlight">\(R^{-1}(\varphi)\)</span> is defined by the equation <span class="math notranslate nohighlight">\(G(R(\alpha, \beta))=0\)</span>.</p>
+<p>Now, the implicit function theorem gives us a locally defined function <span class="math notranslate nohighlight">\(f\)</span> that describes a part of <span class="math notranslate nohighlight">\(R^{-1}(\varphi)\)</span>.
+As <span class="math notranslate nohighlight">\(x_0\)</span> lies on the curve, <span class="math notranslate nohighlight">\(f(0)=0\)</span> holds.
+Also, the implicit function theorem tells us that for small <span class="math notranslate nohighlight">\(\alpha\)</span>,</p>
+<div class="math notranslate nohighlight" id="equation-eq-f-diff">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-f-diff" title="Link to this equation">#</a></span>\[  f'(\alpha) = {\large - \frac{\frac{\partial G \circ R}{\partial \alpha}}{\frac{\partial G \circ R}{\partial \beta}} \Biggr\rvert_{\beta=f(\alpha)} }
+             = \frac{\nabla G(\alpha \tau + \beta \nu + x_0) \cdot \tau}{\nabla G(\alpha \tau + \beta \nu + x_0) \cdot \nu} \Biggr\rvert_{\beta=f(\alpha)}
+             = \frac{\nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \tau}{\nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \nu}\]</div>
+<p>holds. <span id="id8">[<a class="reference internal" href="bibliography.html#id10" title="Heinz W. Engl and Andreas Neubauer. Skriptum Analysis. Institute for industrial mathematics, Johannes Kepler university Linz, 2024.">EN24</a>, Satz 6.69 and Korollar 6.70]</span>
+Inserting <span class="math notranslate nohighlight">\(\alpha = 0\)</span> yields</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  f'(0) = - \frac{\nabla G(x_0) \cdot \tau}{\nabla G(x_0) \cdot \nu}
+\end{equation*}\]</div>
+<p>However, <a class="reference internal" href="#equation-eq-f-diff">(4)</a> can also be used to obtain <span class="math notranslate nohighlight">\(f''\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  f''(\alpha) = &amp;- \frac{\tau^T H_G(\alpha \tau + f(\alpha) \nu + x_0)(\tau + f'(\alpha) \nu) \nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \nu
+                        }{(\nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \nu)^2} \\
+                &amp;+ \frac{ \nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \tau \nu^T H_G(\alpha \tau + f(\alpha) \nu + x_0)(\tau + f'(\alpha) \nu)
+                        }{(\nabla G(\alpha \tau + f(\alpha) \nu + x_0) \cdot \nu)^2}
+\end{align*}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(H_G\)</span> denotes the hessian of <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(\alpha = 0\)</span> and <span class="math notranslate nohighlight">\(c := \tau + f'(0) \nu\)</span>, this amounts to</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  f''(0) = - \frac{(\tau^T H_G(x_0)c ) \nabla G(x_0) \cdot \nu - \nabla G(x_0) \cdot \tau ( \nu^T H_G(x_0)c)}{(\nabla G(x_0) \cdot \nu)^2}.
+\end{equation*}\]</div>
+<p>Now, all building blocks for the computation of the curvature are available.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -374,20 +456,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro.html"
+       href="eqmotion.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Rolling-Bouncing Ball</p>
+        <p class="prev-next-title">Equations of motion for constrained mechanical systems</p>
       </div>
     </a>
     <a class="right-next"
-       href="rolling-bouncing_ball.html"
+       href="newmark.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Rolling-Bouncing Ball</p>
+        <p class="prev-next-title">The Newmark time stepper</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -407,20 +489,13 @@
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book Community
+By Helene Rößler, Norbert Hammer
 </p>
 
   </div>
   
   <div class="footer-item">
     
-
-  <p class="copyright">
-    
-      © Copyright 2023.
-      <br/>
-    
-  </p>
 
   </div>
   

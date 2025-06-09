@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Markdown Files &#8212; My sample book</title>
+    <title>Switching states &#8212; Rolling-bouncing ball</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,11 +60,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'markdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'events';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
-    <link rel="prev" title="Different Bounce Thresholds" href="bounce_threshold.html" />
+    <link rel="next" title="Technical details" href="technicalities.html" />
+    <link rel="prev" title="Calculation of the centrifugal force" href="fcentrif.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -146,8 +148,8 @@
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Rolling-bouncing ball - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Rolling-bouncing ball - Home"/>
   
   
 </a></div>
@@ -168,12 +170,26 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="genalpha.html">The generalized-𝛂 solver</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="eqmotion.html">Equations of motion for constrained mechanical systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curvature.html">Curvature of an implicit curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newmark.html">The Newmark time stepper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fcentrif.html">Calculation of the centrifugal force</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Switching states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technicalities.html">Technical details</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bead_wire.html">Bead on a wire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bead_friction.html">Bead with friction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rolling-bouncing_ball.html">Rolling-Bouncing Ball</a></li>
+<li class="toctree-l1"><a class="reference internal" href="donut.html">Donut shape</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bounce_threshold.html">Different Bounce Thresholds</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -248,7 +264,7 @@
       
       
       
-      <li><a href="_sources/markdown.md" target="_blank"
+      <li><a href="_sources/events.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -324,7 +340,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Markdown Files</h1>
+    <h1>Switching states</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -334,10 +350,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dae-ode">DAE ⇾ ODE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impact-on-the-curve">Impact on the curve</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ode-dae">ODE ⇾ DAE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ode-ode">ODE ⇾ ODE</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -349,59 +367,71 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="markdown-files">
-<h1>Markdown Files<a class="headerlink" href="#markdown-files" title="Link to this heading">#</a></h1>
-<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
-in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
-called <strong>MyST Markdown</strong>.
-This is a simple file to help you get started and show off some syntax.</p>
-<section id="what-is-myst">
-<h2>What is MyST?<a class="headerlink" href="#what-is-myst" title="Link to this heading">#</a></h2>
-<p>MyST stands for “Markedly Structured Text”. It
-is a slight variation on a flavor of markdown called “CommonMark” markdown,
-with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
-in the Sphinx ecosystem.</p>
-<p>For more about MyST, see <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST Markdown Overview</a>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="switching-states">
+<h1>Switching states<a class="headerlink" href="#switching-states" title="Link to this heading">#</a></h1>
+<p>To make both rolling along the curve (DAE) and jumping/falling (ODE) possible, both types
+of motion can be implemented with an event-based approach on switching between them.
+The diagram below shows the internal workings of how the decision between ODE and DAE is made.
+For ease of use, the ball always starts in its rolling phase, projected to the closest point on the
+curve.</p>
+<img src="../_static/state_flowchart_2.svg">
+<br>
+<br>
+In the following, the conditions and implications of the different possibilities of switching
+are described.
+<section id="dae-ode">
+<h2>DAE ⇾ ODE<a class="headerlink" href="#dae-ode" title="Link to this heading">#</a></h2>
+<p>To determine whether the ball leaves the surface - causing a switch from the DAE to the ODE -
+the total force acting on the ball in the direction of the surface normal has to be
+examined.</p>
+<p>The two important forces to consider are the gravitational force <span class="math notranslate nohighlight">\(F_g\)</span> and the centrifugal force
+<span class="math notranslate nohighlight">\(F_c\)</span>.
+To receive the component of gravity in the normal direction we compute the scalar product</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  F_g = m ~ g \cdot \nu
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(g \in \mathbb{R}^{2}\)</span> denotes the gravitational acceleration and <span class="math notranslate nohighlight">\(\nu \in \mathbb{R}^{2}\)</span>
+the outwards normal vector.</p>
+<p>The total outwards normal force is then given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  F_{\nu} = F_g + F_c,
+\end{equation*}\]</div>
+<p>and the ball lifts off as soon as <span class="math notranslate nohighlight">\(F_{\nu} \lt 0\)</span>, meaning the force pressing the ball towards the
+curve is smaller than the one pushing it away.</p>
+<p>As soon as this happens we stop the Newmark solver for the DAE and turn to the ODE setup to start
+solving for the flying phase.</p>
 </section>
-<section id="sample-roles-and-directives">
-<h2>Sample Roles and Directives<a class="headerlink" href="#sample-roles-and-directives" title="Link to this heading">#</a></h2>
-<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
-<strong>directives span many lines</strong>. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.</p>
-<p>Here is a “note” directive:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note</p>
-</div>
-<p>It will be rendered in a special box when you build your book.</p>
-<p>Here is an inline directive to refer to a document: <a class="reference internal" href="markdown-notebooks.html"><span class="doc">Notebooks with MyST Markdown</span></a>.</p>
+<section id="impact-on-the-curve">
+<span id="sec-impact"></span><h2>Impact on the curve<a class="headerlink" href="#impact-on-the-curve" title="Link to this heading">#</a></h2>
+<p>Let us now look at the case of the ball being airborne (ODE).
+We may define the “inside” of our curve as <span class="math notranslate nohighlight">\(\{ x \in \mathbb{R}^2 ~ | ~ G(x) &lt; 0 \}\)</span> or
+<span class="math notranslate nohighlight">\(\{ x \in \mathbb{R}^2 ~ | ~ G(x) &gt; 0 \}\)</span> (configurable via a parameter).
+Then the program knows that the ball has “hit” the curve (or rather, passed it) when the sign of <span class="math notranslate nohighlight">\(G\)</span> changes.
+In that case:</p>
+<ul class="simple">
+<li><p>The ball’s position can be projected (numerically) to the curve. Then the calculation of a normal and a tangent vector makes sense.</p></li>
+<li><p>The normal and tangent components of the velocity can be calculated using scalar products.</p></li>
+<li><p>The normal and tangent velocities can be damped by multiplication with a normal and tangent “coefficient of restitution”, respectively.</p></li>
+<li><p>The decision on the new state of the object’s motion can be made.</p></li>
+</ul>
+<section id="ode-dae">
+<span id="sec-odedae"></span><h3>ODE ⇾ DAE<a class="headerlink" href="#ode-dae" title="Link to this heading">#</a></h3>
+<p>If the new normal velocity (see <a class="reference internal" href="#sec-impact"><span class="std std-ref">Impact on the curve</span></a>) lies below a certain threshold parameter, the algorithm described here
+makes the program switch from the ODE to the DAE mode. <span class="math notranslate nohighlight">\(q\)</span> stays the same, the (already very small) normal velocity gets set to zero.
+As for the acceleration, it is adapted to the velocity on the curve using <a class="reference internal" href="newmark.html#equation-eq-accel-start">(6)</a>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  \mathbf{a}_{DAE} = (\mathbf{a}_{ODE}, \tau)\tau + \kappa \| \mathbf{v}_{DAE} \| ^2 \nu
+\end{equation*}\]</div>
 </section>
-<section id="citations">
-<h2>Citations<a class="headerlink" href="#citations" title="Link to this heading">#</a></h2>
-<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
-the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
-this: <span id="id1">[<a class="reference internal" href="#id3" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">HdHPK14</a>]</span>.</p>
-<p>Moreover, you can insert a bibliography into your page with this syntax:
-The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
-render properly.
-For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
-then the bibliography is inserted with:</p>
-<div class="docutils container" id="id2">
-<div role="list" class="citation-list">
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">HdHPK14</a><span class="fn-bracket">]</span></span>
-<p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
-</div>
-</div>
-</div>
+<section id="ode-ode">
+<h3>ODE ⇾ ODE<a class="headerlink" href="#ode-ode" title="Link to this heading">#</a></h3>
+<p>In the case that the new normal velocity (see <a class="reference internal" href="#sec-impact"><span class="std std-ref">Impact on the curve</span></a>) is larger than the threshold from (see <a class="reference internal" href="#sec-odedae"><span class="std std-ref">ODE ⇾ DAE</span></a>),
+the motion gets mirrored along the tangent. <span class="math notranslate nohighlight">\(q\)</span> stays the same and the normal velocity gets inverted (multiplied with <span class="math notranslate nohighlight">\(-1\)</span>).
+The acceleration is required to always be the gravitational acceleration. Therefore, it is not changed.</p>
 </section>
-<section id="learn-more">
-<h2>Learn more<a class="headerlink" href="#learn-more" title="Link to this heading">#</a></h2>
-<p>This is just a simple starter to get you started.
-You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
 </section>
 </section>
 
@@ -436,20 +466,20 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="bounce_threshold.html"
+       href="fcentrif.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Different Bounce Thresholds</p>
+        <p class="prev-next-title">Calculation of the centrifugal force</p>
       </div>
     </a>
     <a class="right-next"
-       href="markdown-notebooks.html"
+       href="technicalities.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+        <p class="prev-next-title">Technical details</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -470,10 +500,12 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dae-ode">DAE ⇾ ODE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impact-on-the-curve">Impact on the curve</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ode-dae">ODE ⇾ DAE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ode-ode">ODE ⇾ ODE</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
@@ -488,20 +520,13 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book Community
+By Helene Rößler, Norbert Hammer
 </p>
 
   </div>
   
   <div class="footer-item">
     
-
-  <p class="copyright">
-    
-      © Copyright 2023.
-      <br/>
-    
-  </p>
 
   </div>
   

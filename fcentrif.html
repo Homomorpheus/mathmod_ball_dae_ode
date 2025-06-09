@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Content with notebooks &#8212; My sample book</title>
+    <title>Calculation of the centrifugal force &#8212; Rolling-bouncing ball</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -62,9 +62,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fcentrif';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Switching states" href="events.html" />
+    <link rel="prev" title="The Newmark time stepper" href="newmark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -116,8 +118,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -148,8 +148,8 @@
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Rolling-bouncing ball - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Rolling-bouncing ball - Home"/>
   
   
 </a></div>
@@ -170,12 +170,26 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="genalpha.html">The generalized-𝛂 solver</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="eqmotion.html">Equations of motion for constrained mechanical systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curvature.html">Curvature of an implicit curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newmark.html">The Newmark time stepper</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Calculation of the centrifugal force</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Switching states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technicalities.html">Technical details</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bead_wire.html">Bead on a wire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bead_friction.html">Bead with friction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rolling-bouncing_ball.html">Rolling-Bouncing Ball</a></li>
+<li class="toctree-l1"><a class="reference internal" href="donut.html">Donut shape</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bounce_threshold.html">Different Bounce Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -224,55 +238,6 @@
 <div class="article-header-buttons">
 
 
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://mybinder.org/v2/gh/Homomorpheus/mathmod_ball_dae_ode/main?urlpath=tree/docs/notebooks.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Binder"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Binder logo" src="_static/images/logo_binder.svg">
-  </span>
-<span class="btn__text-container">Binder</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
 <a href="https://github.com/Homomorpheus/mathmod_ball_dae_ode" target="_blank"
    class="btn btn-sm btn-source-repository-button"
    title="Source repository"
@@ -299,7 +264,7 @@
       
       
       
-      <li><a href="_sources/notebooks.ipynb" target="_blank"
+      <li><a href="_sources/fcentrif.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -309,7 +274,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -375,7 +340,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Content with notebooks</h1>
+    <h1>Calculation of the centrifugal force</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -385,9 +350,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-notebooks">Markdown + notebooks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#myst-markdown">MyST markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-blocks-and-outputs">Code blocks and outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-a-circle">On a circle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-general-curves">On general curves</a></li>
 </ul>
             </nav>
         </div>
@@ -399,75 +363,92 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="content-with-notebooks">
-<h1>Content with notebooks<a class="headerlink" href="#content-with-notebooks" title="Link to this heading">#</a></h1>
-<p>You can also create content with Jupyter Notebooks. This means that you can include
-code blocks and their outputs in your book.</p>
-<section id="markdown-notebooks">
-<h2>Markdown + notebooks<a class="headerlink" href="#markdown-notebooks" title="Link to this heading">#</a></h2>
-<p>As it is markdown, you can embed images, HTML, etc into your posts!</p>
-<p><img alt="" src="https://myst-parser.readthedocs.io/en/latest/_static/logo-wide.svg" /></p>
-<p>You can also <span class="math notranslate nohighlight">\(add_{math}\)</span> and</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="calculation-of-the-centrifugal-force">
+<h1>Calculation of the centrifugal force<a class="headerlink" href="#calculation-of-the-centrifugal-force" title="Link to this heading">#</a></h1>
+<p>The motion of an object on a surface/curve - and therefore its liftoff behavior -
+is determined by the forces acting on it, including the centrifugal force
+from the surface/curve. Using the centrifugal force and all other forces,
+one can determine whether the object is pressed towards or away from the
+surface/curve.</p>
+<p>Note that the centrifugal force does not have to correspond to the constraint
+force <span class="math notranslate nohighlight">\(\lambda \nabla G(q)\)</span> <span id="id1">[<a class="reference internal" href="bibliography.html#id3" title="Matthias Bartelmann, Björn Feuerbacher, Timm Krüger, Dieter Lüst, Anton Rebhan, and Andreas Wipf. Theoretische Physik. Springer Berlin Heidelberg, Berlin, Heidelberg, 2015. ISBN 3642546188. URL: 10.1007/978-3-642-54618-1.">BFK+15</a>, page 202]</span>.</p>
+<section id="on-a-circle">
+<h2>On a circle<a class="headerlink" href="#on-a-circle" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(m, q(t)\)</span> and <span class="math notranslate nohighlight">\(\omega(t)\)</span> be the mass, position and angular velocity of a particle on a circular curve
+around the origin of the reference frame.
+Then the centrifugal force acting on the particle is</p>
 <div class="math notranslate nohighlight">
 \[
-math^{blocks}
+  \hat{F}_c = m ~ \omega \times (q \times \omega).
 \]</div>
-<p>or</p>
+<p><span id="id2">[<a class="reference internal" href="bibliography.html#id8" title="Wolfgang Demtröder. Experimentalphysik 1 : Mechanik und Wärme. Springer-Lehrbuch. Springer Berlin Heidelberg, Berlin, Heidelberg, 7. aufl. 2015 edition, 2015. ISBN 3662464152. URL: 10.1007/978-3-662-46415-1.">Dem15</a>, page 82]</span> This vector form can be simplified using the identity
+<span class="math notranslate nohighlight">\(a \times (b \times c) = b(a \cdot c) - c(a \cdot b)\)</span> <span id="id3">[<a class="reference internal" href="bibliography.html#id8" title="Wolfgang Demtröder. Experimentalphysik 1 : Mechanik und Wärme. Springer-Lehrbuch. Springer Berlin Heidelberg, Berlin, Heidelberg, 7. aufl. 2015 edition, 2015. ISBN 3662464152. URL: 10.1007/978-3-662-46415-1.">Dem15</a>, page 409, Equation 13.9]</span>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\mbox{mean} la_{tex} \\ \\
-math blocks
-\end{aligned}
-\end{split}\]</div>
-<p>But make sure you $Escape $your $dollar signs $you want to keep!</p>
+\[
+  \hat{F}_c = m ~ \omega \times (q \times \omega) = m(q (\omega \cdot \omega) - \omega (\underbrace{\omega \cdot q}_{=0})) = m q \| \omega \|^2
+\]</div>
+<p>This vectorial force is normal to the curve. Since we are only interested in the normal part of the force, we define</p>
+<div class="math notranslate nohighlight">
+\[
+  F_c := \| \hat{F}_c \| = m r \| \omega \|^2,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(r\)</span> is the radius of the circular curve.
+In addition, we know that <span class="math notranslate nohighlight">\(\dot{q} = \omega \times q\)</span> <span id="id4">[<a class="reference internal" href="bibliography.html#id9" title="Darryl D Holm. Geometric mechanics : 2. Rotating, translating and rolling. World Scientific Publ. Imperial College Press, Singapore [u.a.] London, 2008. ISBN 1848161557.">Hol08</a>, Equation 2.1.7, Remark 2.1.16]</span>.
+As (without loss of generality)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  \omega =
+  \begin{pmatrix}
+    0 \\
+    0 \\
+    \omega_3
+  \end{pmatrix}
+  ~~~~ \text{and} ~~~~
+  q =
+  \begin{pmatrix}
+    q_1 \\
+    q_2 \\
+    0
+  \end{pmatrix},
+\end{align*}\]</div>
+<p>we obtain that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  \dot{q} = \omega \times q =
+  \begin{pmatrix}
+    -\omega_3 q_2 \\
+    -\omega_3 q_1 \\
+    0
+  \end{pmatrix}.
+\end{equation*}\]</div>
+<p>As a result, <span class="math notranslate nohighlight">\(\| \dot{q} \| = |\omega_3| \|q\| = \| \omega \| r\)</span> and therefore</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  F_c = m \frac{ \| \dot{q} \|^2 }{r}
+\end{equation*}\]</div>
+<p>follows.</p>
 </section>
-<section id="myst-markdown">
-<h2>MyST markdown<a class="headerlink" href="#myst-markdown" title="Link to this heading">#</a></h2>
-<p>MyST markdown works in Jupyter Notebooks as well. For more information about MyST markdown, check
-out <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST guide in Jupyter Book</a>,
-or see <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">the MyST markdown documentation</a>.</p>
-</section>
-<section id="code-blocks-and-outputs">
-<h2>Code blocks and outputs<a class="headerlink" href="#code-blocks-and-outputs" title="Link to this heading">#</a></h2>
-<p>Jupyter Book will also embed your code blocks and output in your book.
-For example, here’s some sample Matplotlib code:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fixing random state for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
-
-<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span>
-<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cycler</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)))</span>
-
-
-<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
-<span class="n">custom_lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">.5</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">1.</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">)]</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">lines</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">custom_lines</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Cold&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Hot&#39;</span><span class="p">]);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>There is a lot more that you can do with outputs (such as including interactive outputs)
-with your book. For more information about this, see <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a></p>
+<section id="on-general-curves">
+<h2>On general curves<a class="headerlink" href="#on-general-curves" title="Link to this heading">#</a></h2>
+<p>However, this is not applicable when the motion of the particle is not exactly circular;
+after all, the formula above depends on the radius of the circular motion.
+This can be mitigated by assuming the motion to be asymptotically circular.</p>
+<p>The osculating circle of a curve at a point is the circle that goes through that point
+and has the same tangent and curvature <span class="math notranslate nohighlight">\(\kappa\)</span> at that point. Its radius is</p>
+<div class="math notranslate nohighlight">
+\[
+r = \frac{1}{ | \kappa | }.
+\]</div>
+<p><span id="id5">[<a class="reference internal" href="bibliography.html#id6" title="Eric Weisstein. Osculating circle. Accessed: 2025-06-06. URL: https://mathworld.wolfram.com/OsculatingCircle.html.">Weib</a>]</span></p>
+<p>This turns the formula for the centrifugal force into</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  F_c = m \| \dot{q} \|^2 | \kappa |.
+\end{equation*}\]</div>
+<p>Note that the direction of the centrifugal force is given by the sign of <span class="math notranslate nohighlight">\(\kappa\)</span>.</p>
+<!--
+order https://www.worldscientific.com/worldscibooks/10.1142/p802#t=aboutBook ??? \
+https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/archiv/universitaetssammlungen/privilegiensammlung -->
 </section>
 </section>
 
@@ -501,6 +482,24 @@ with your book. For more information about this, see <a class="reference externa
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="newmark.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The Newmark time stepper</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="events.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Switching states</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -518,9 +517,8 @@ with your book. For more information about this, see <a class="reference externa
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-notebooks">Markdown + notebooks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#myst-markdown">MyST markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-blocks-and-outputs">Code blocks and outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-a-circle">On a circle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-general-curves">On general curves</a></li>
 </ul>
   </nav></div>
 
@@ -535,20 +533,13 @@ with your book. For more information about this, see <a class="reference externa
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book Community
+By Helene Rößler, Norbert Hammer
 </p>
 
   </div>
   
   <div class="footer-item">
     
-
-  <p class="copyright">
-    
-      © Copyright 2023.
-      <br/>
-    
-  </p>
 
   </div>
   

@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   aria-roledescription="stateDiagram"
+   role="graphics-document document"
+   viewBox="4 4 287.5833435058594 143.3333282470703"
+   style="max-width: 287.5833435058594px;"
+   class="statediagram"
+   width="100%"
+   id="export-svg"
+   version="1.1"
+   sodipodi:docname="Mermaid Chart - Create complex, visual diagrams with text. A smarter way of creating diagrams.-2025-05-27-203500.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <sodipodi:namedview
+     id="namedview19"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="2.5582821"
+     inkscape:cx="104.7578"
+     inkscape:cy="66.646285"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="export-svg" />
+  <xhtml:style>@import url(&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css&quot;); p {margin: 0;}</xhtml:style>
+  <style
+     id="style1">#export-svg{font-family:arial,sans-serif;font-size:14px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#export-svg .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#export-svg .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#export-svg .error-icon{fill:#ffffff;}#export-svg .error-text{fill:#000000;stroke:#000000;}#export-svg .edge-thickness-normal{stroke-width:1px;}#export-svg .edge-thickness-thick{stroke-width:3.5px;}#export-svg .edge-pattern-solid{stroke-dasharray:0;}#export-svg .edge-thickness-invisible{stroke-width:0;fill:none;}#export-svg .edge-pattern-dashed{stroke-dasharray:3;}#export-svg .edge-pattern-dotted{stroke-dasharray:2;}#export-svg .marker{fill:#000000;stroke:#000000;}#export-svg .marker.cross{stroke:#000000;}#export-svg svg{font-family:arial,sans-serif;font-size:14px;}#export-svg p{margin:0;}#export-svg defs #statediagram-barbEnd{fill:#000000;stroke:#000000;}#export-svg g.stateGroup text{fill:#000000;stroke:none;font-size:10px;}#export-svg g.stateGroup text{fill:#333;stroke:none;font-size:10px;}#export-svg g.stateGroup .state-title{font-weight:bolder;fill:#333;}#export-svg g.stateGroup rect{fill:#ffffff;stroke:#000000;}#export-svg g.stateGroup line{stroke:#000000;stroke-width:1;}#export-svg .transition{stroke:#000000;stroke-width:1;fill:none;}#export-svg .stateGroup .composit{fill:#ffffff;border-bottom:1px;}#export-svg .stateGroup .alt-composit{fill:#e0e0e0;border-bottom:1px;}#export-svg .state-note{stroke:hsl(52.6829268293, 60%, 73.9215686275%);fill:#fff5ad;}#export-svg .state-note text{fill:#333;stroke:none;font-size:10px;}#export-svg .stateLabel .box{stroke:none;stroke-width:0;fill:#ffffff;opacity:0.5;}#export-svg .edgeLabel .label rect{fill:#ffffff;opacity:0.5;}#export-svg .edgeLabel{background-color:#E9E9F1;text-align:center;}#export-svg .edgeLabel p{background-color:#E9E9F1;}#export-svg .edgeLabel rect{opacity:0.5;background-color:#E9E9F1;fill:#E9E9F1;}#export-svg .edgeLabel .label text{fill:#333;}#export-svg .label div .edgeLabel{color:#333;}#export-svg .stateLabel text{fill:#333;font-size:10px;font-weight:bold;}#export-svg .node circle.state-start{fill:#000000;stroke:#000000;}#export-svg .node .fork-join{fill:#000000;stroke:#000000;}#export-svg .node circle.state-end{fill:#ffffff;stroke:#ffffff;stroke-width:1.5;}#export-svg [data-look=&quot;neo&quot;].node circle.state-end{filter:none;stroke:#ffffff;fill:#000000;}#export-svg .end-state-inner{fill:#ffffff;stroke:#ffffff;stroke-width:1.5;}#export-svg .node rect{fill:#ffffff;stroke:#000000;stroke-width:1;}#export-svg .node-rect-neo{fill:#ffffff;stroke:none;stroke-width:1px;}#export-svg .node polygon{fill:#ffffff;stroke:#000000;stroke-width:1px;}#export-svg #statediagram-barbEnd{fill:#000000;}#export-svg .statediagram-cluster rect{fill:#ffffff;stroke:#000000;stroke-width:1;}#export-svg .cluster-label,#export-svg .nodeLabel{color:#333;line-height:1.0;font-weight:undefined;}#export-svg .statediagram-cluster rect.outer{rx:3px;ry:3px;}#export-svg .statediagram-state .divider{stroke:#000000;}#export-svg .statediagram-state .title-state{rx:3px;ry:3px;}#export-svg .statediagram-cluster.statediagram-cluster .inner{fill:#ffffff;}#export-svg .statediagram-cluster.statediagram-cluster-alt .inner{fill:#f0f0f0;}#export-svg .statediagram-cluster .inner{rx:0;ry:0;}#export-svg .statediagram-state rect.basic{rx:3px;ry:3px;}#export-svg .state-shadow-neo{filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg .statediagram-state rect.divider{stroke-dasharray:10,10;fill:#f0f0f0;}#export-svg .note-edge{stroke-dasharray:5;}#export-svg .statediagram-note rect{fill:#fff5ad;stroke:hsl(52.6829268293, 60%, 73.9215686275%);stroke-width:1px;rx:0;ry:0;}#export-svg .statediagram-note rect{fill:#fff5ad;stroke:hsl(52.6829268293, 60%, 73.9215686275%);stroke-width:1px;rx:0;ry:0;}#export-svg .statediagram-note text{fill:#333;}#export-svg .statediagram-note .nodeLabel{color:#333;}#export-svg .node.statediagram-note rect{stroke:hsl(52.6829268293, 60%, 73.9215686275%)!important;}#export-svg .statediagram .edgeLabel{color:red;}#export-svg #dependencyStart,#export-svg #dependencyEnd{fill:#000000;stroke:#000000;stroke-width:1;}#export-svg .statediagramTitleText{text-anchor:middle;font-size:18px;fill:#333;}#export-svg [data-look=&quot;neo&quot;].statediagram-cluster rect.outer{rx:3px;ry:3px;filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg [data-look=&quot;neo&quot;].statediagram-cluster .inner{rx:3px;ry:3px;}#export-svg .node .neo-node{stroke:#000000;}#export-svg [data-look=&quot;neo&quot;].node rect,#export-svg [data-look=&quot;neo&quot;].cluster rect,#export-svg [data-look=&quot;neo&quot;].node polygon{stroke:url(#export-svg-gradient);filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg [data-look=&quot;neo&quot;].node path{stroke:url(#export-svg-gradient);stroke-width:1;}#export-svg [data-look=&quot;neo&quot;].node .outer-path{filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg [data-look=&quot;neo&quot;].node .neo-line path{stroke:#000000;filter:none;}#export-svg [data-look=&quot;neo&quot;].node circle{stroke:url(#export-svg-gradient);filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg [data-look=&quot;neo&quot;].node circle .state-start{fill:#000000;}#export-svg [data-look=&quot;neo&quot;].statediagram-cluster rect{fill:#ffffff;stroke:url(#export-svg-gradient);stroke-width:1;}#export-svg [data-look=&quot;neo&quot;].icon-shape .icon{fill:url(#export-svg-gradient);filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg [data-look=&quot;neo&quot;].icon-shape .icon-neo path{stroke:url(#export-svg-gradient);filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg :root{--mermaid-font-family:&quot;trebuchet ms&quot;,verdana,arial,sans-serif;}</style>
+  <g
+     id="g2">
+    <defs
+       id="defs1">
+      <rect
+         x="69.031309"
+         y="-7.8101116"
+         width="4.5349035"
+         height="115.13616"
+         id="rect24" />
+      <marker
+         orient="auto"
+         markerUnits="strokeWidth"
+         markerHeight="14"
+         markerWidth="20"
+         refY="7"
+         refX="19"
+         id="export-svg_stateDiagram-barbEnd">
+        <path
+           d="M 19,7 L11,14 L13,7 L11,0 Z"
+           id="path1" />
+      </marker>
+    </defs>
+    <defs
+       id="defs2">
+      <marker
+         orient="auto"
+         markerUnits="userSpaceOnUse"
+         markerHeight="14"
+         markerWidth="20"
+         refY="7"
+         refX="17"
+         id="export-svg_stateDiagram-barbEnd-margin">
+        <path
+           fill="#000000"
+           d="M 19,7 L11,14 L13,7 L11,0 Z"
+           id="path2" />
+      </marker>
+    </defs>
+  </g>
+  <defs
+     id="defs3">
+    <filter
+       width="130%"
+       height="130%"
+       id="drop-shadow">
+      <feDropShadow
+         flood-color="#000000"
+         flood-opacity="0.06"
+         stdDeviation="0"
+         dy="4"
+         dx="4" />
+    </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#export-svg-gradient"
+       id="linearGradient23"
+       gradientUnits="userSpaceOnUse"
+       x1="-7.5"
+       y1="-7.5"
+       x2="7.5"
+       y2="-7.5"
+       gradientTransform="translate(-202.125,-13.416667)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#export-svg-gradient"
+       id="linearGradient29"
+       gradientUnits="userSpaceOnUse"
+       x1="-24.543585"
+       y1="-24.543585"
+       x2="24.543585"
+       y2="-24.543585"
+       gradientTransform="scale(1.2586454,0.79450496)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#export-svg-gradient"
+       id="linearGradient30"
+       gradientUnits="userSpaceOnUse"
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#export-svg-gradient"
+       id="linearGradient31"
+       gradientUnits="userSpaceOnUse"
+       x1="-24.849546"
+       y1="-24.849546"
+       x2="24.849546"
+       y2="-24.849546"
+       gradientTransform="scale(1.2743357,0.78472258)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#export-svg-gradient"
+       id="linearGradient32"
+       gradientUnits="userSpaceOnUse"
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0" />
+  </defs>
+  <defs
+     id="defs4">
+    <filter
+       width="150%"
+       height="150%"
+       id="drop-shadow-small">
+      <feDropShadow
+         flood-color="#000000"
+         flood-opacity="0.06"
+         stdDeviation="0"
+         dy="2"
+         dx="2" />
+    </filter>
+  </defs>
+  <linearGradient
+     y2="0%"
+     x2="100%"
+     y1="0%"
+     x1="0%"
+     gradientUnits="objectBoundingBox"
+     id="export-svg-gradient">
+    <stop
+       stop-opacity="1"
+       stop-color="#0042eb"
+       offset="0%"
+       id="stop4" />
+    <stop
+       stop-opacity="1"
+       stop-color="#eb0042"
+       offset="100%"
+       id="stop5" />
+  </linearGradient>
+  <g
+     class="subgraphs"
+     id="g5" />
+  <g
+     class="nodes"
+     id="g9"
+     transform="matrix(0.89455132,0,0,0.89455132,33.393579,10.505292)">
+    <g
+       transform="translate(180.8,132.33333)"
+       data-look="neo"
+       data-et="node"
+       data-node="true"
+       data-id="root_start"
+       id="state-root_start-0"
+       class="node default">
+      <circle
+         height="14"
+         width="14"
+         r="7"
+         class="state-start"
+         id="circle5"
+         style="stroke:url(#linearGradient23)"
+         cx="-202.125"
+         cy="-13.416667" />
+    </g>
+    <g
+       transform="translate(253.19167,79.333333)"
+       data-look="neo"
+       data-et="node"
+       data-node="true"
+       data-id="DAE"
+       id="state-DAE-3"
+       class="node  statediagram-state">
+      <rect
+         stroke="url(#gradient)"
+         height="38"
+         width="60.78334"
+         y="-19"
+         x="-30.39167"
+         ry="3"
+         data-id="DAE"
+         rx="3"
+         style="stroke:url(#linearGradient29)"
+         class="basic label-container"
+         id="rect5" />
+      <g
+         transform="translate(-14.39167,-7)"
+         class="label"
+         id="g6">
+        <rect
+           id="rect6"
+           style="stroke:url(#linearGradient30)"
+           width="0"
+           height="0"
+           x="0"
+           y="0" />
+        <foreignObject
+           height="14"
+           width="28.783340454101562">
+          <xhtml:div
+             style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+            <xhtml:span
+               class="nodeLabel">
+              <xhtml:p>DAE</xhtml:p>
+            </xhtml:span>
+          </xhtml:div>
+        </foreignObject>
+      </g>
+    </g>
+    <g
+       transform="translate(48.566666,73)"
+       data-look="neo"
+       data-et="node"
+       data-node="true"
+       data-id="ODE"
+       id="state-ODE-3"
+       class="node  statediagram-state">
+      <rect
+         stroke="url(#gradient)"
+         height="38"
+         width="62.333328"
+         y="-19"
+         x="-31.166664"
+         ry="3"
+         data-id="ODE"
+         rx="3"
+         style="stroke:url(#linearGradient31)"
+         class="basic label-container"
+         id="rect7" />
+      <g
+         transform="translate(-15.166664,-7)"
+         class="label"
+         id="g8">
+        <rect
+           id="rect8"
+           style="stroke:url(#linearGradient32)"
+           width="0"
+           height="0"
+           x="0"
+           y="0" />
+        <foreignObject
+           height="14"
+           width="30.333328247070312">
+          <xhtml:div
+             style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+            <xhtml:span
+               class="nodeLabel">
+              <xhtml:p>ODE</xhtml:p>
+            </xhtml:span>
+          </xhtml:div>
+        </foreignObject>
+      </g>
+    </g>
+  </g>
+  <g
+     class="edges edgePaths"
+     id="g10"
+     transform="matrix(0.89455132,0,0,0.89455132,33.393579,10.505292)">
+    <path
+       marker-end="url(#export-svg_stateDiagram-barbEnd-margin)"
+       data-points="W3sieCI6MTg3LjgwMDAwMzA1MTc1NzgsInkiOjEzMi4zMzMzMzMzMzMzMzMzNH0seyJ4IjoyMDUuMzAwMDAzMDUxNzU3OCwieSI6MTMyLjMzMzMzMzMzMzMzMzM0fSx7IngiOjIwNS4zMDAwMDMwNTE3NTc4LCJ5Ijo4OC44MzMzMzMzMzMzMzMzNH0seyJ4IjoyMjIuODAwMDAzMDUxNzU3OCwieSI6ODguODMzMzMzMzMzMzMzMzR9XQ=="
+       data-id="edge0"
+       data-et="edge"
+       data-edge="true"
+       style="fill:none;stroke-dasharray:0, 0, 68.075, 0;stroke-dashoffset:0"
+       class="edge-thickness-normal edge-pattern-solid transition"
+       id="edge0"
+       d="m -14.325003,118.91667 h 10.4289312 q 7.071068,0 7.071068,-7.07107 V 81.416666 q 0,-6 6,-6 h 6.0000008" />
+    <path
+       marker-end="url(#export-svg_stateDiagram-barbEnd-margin)"
+       data-points="W3sieCI6MjIyLjgwMDAwMzA1MTc1NzgsInkiOjc5LjMzMzMzMzMzMzMzMzM0fSx7IngiOjc5LjczMzMyOTc3Mjk0OTIyLCJ5Ijo3OS4zMzMzMzMzMzMzMzMzNH1d"
+       data-id="edge1"
+       data-et="edge"
+       data-edge="true"
+       style="fill:none;stroke-dasharray:0, 0, 137.567, 0;stroke-dashoffset:0"
+       class="edge-thickness-normal edge-pattern-solid transition"
+       id="edge1"
+       d="M 222.8,79.333333 H 85.23333" />
+    <path
+       marker-end="url(#export-svg_stateDiagram-barbEnd-margin)"
+       data-points="W3sieCI6MzguMTc3Nzc3NjA4MjM1NjcsInkiOjU0fSx7IngiOjM4LjE3Nzc3NzYwODIzNTY3LCJ5IjozNi41fSx7IngiOjU4Ljk1NTU1MzY5MDU5MjQ0NiwieSI6MzYuNX0seyJ4Ijo1OC45NTU1NTM2OTA1OTI0NDYsInkiOjU0fV0="
+       data-id="edge2"
+       data-et="edge"
+       data-edge="true"
+       style="fill:none;stroke-dasharray:0, 0, 45.3528, 0;stroke-dashoffset:0"
+       class="edge-thickness-normal edge-pattern-solid transition"
+       id="edge2"
+       d="M 242.34446,60.416667 V 49.987735 q 0,-7.071068 7.07106,-7.071068 h 7.70671 q 6,0 6,6 v 6" />
+    <path
+       marker-end="url(#export-svg_stateDiagram-barbEnd-margin)"
+       data-points="W3sieCI6NzkuNzMzMzI5NzcyOTQ5MjIsInkiOjY2LjY2NjY2NjY2NjY2NjY3fSx7IngiOjEwMi42MzMzMzEyOTg4MjgxMiwieSI6NjYuNjY2NjY2NjY2NjY2Njd9LHsieCI6MTAyLjYzMzMzMTI5ODgyODEyLCJ5IjozOS44MzMzMzMzMzMzMzMzNH0seyJ4IjoyMDUuMzAwMDAzMDUxNzU3OCwieSI6MzkuODMzMzMzMzMzMzMzMzR9LHsieCI6MjA1LjMwMDAwMzA1MTc1NzgsInkiOjY5LjgzMzMzMzMzMzMzMzM0fSx7IngiOjIyMi44MDAwMDMwNTE3NTc4LCJ5Ijo2OS44MzMzMzMzMzMzMzMzNH1d"
+       data-id="edge3"
+       data-et="edge"
+       data-edge="true"
+       style="fill:none;stroke-dasharray:0, 0, 184.146, 0;stroke-dashoffset:0"
+       class="edge-thickness-normal edge-pattern-solid transition"
+       id="edge3"
+       d="m 79.73333,66.666667 h 15.828933 q 7.071067,0 7.071067,-7.071068 V 46.904401 q 0,-7.071068 7.07107,-7.071068 h 88.52454 q 7.07106,0 7.07106,7.071068 v 16.928932 q 0,6 6,6 h 6" />
+  </g>
+  <g
+     class="edgeLabels"
+     id="g19">
+    <g
+       class="edgeLabel"
+       id="g12">
+      <g
+         transform="translate(0, 0)"
+         data-id="edge0"
+         class="label"
+         id="g11">
+        <foreignObject
+           height="0"
+           width="0">
+          <xhtml:div
+             class="labelBkg"
+             style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+            <xhtml:span
+               class="edgeLabel" />
+          </xhtml:div>
+        </foreignObject>
+      </g>
+    </g>
+    <g
+       transform="translate(153.96666717529297, 78.83333333333334)"
+       class="edgeLabel"
+       id="g14">
+      <g
+         transform="translate(-14.650001525878906, -10.5)"
+         data-id="edge1"
+         class="label"
+         id="g13">
+        <foreignObject
+           height="21"
+           width="29.300003051757812">
+          <xhtml:div
+             class="labelBkg"
+             style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+            <xhtml:span
+               class="edgeLabel">
+              <xhtml:p>liftoff</xhtml:p>
+            </xhtml:span>
+          </xhtml:div>
+        </foreignObject>
+      </g>
+    </g>
+    <g
+       transform="translate(48.56666564941406, 22.5)"
+       class="edgeLabel"
+       id="g16">
+      <g
+         transform="translate(-36.56666564941406, -10.5)"
+         data-id="edge2"
+         class="label"
+         id="g15">
+        <foreignObject
+           height="21"
+           width="73.13333129882812">
+          <xhtml:div
+             class="labelBkg"
+             style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+            <xhtml:span
+               class="edgeLabel">
+              <xhtml:p>hard impact</xhtml:p>
+            </xhtml:span>
+          </xhtml:div>
+        </foreignObject>
+      </g>
+    </g>
+    <g
+       transform="translate(153.96666717529297, 39.33333333333334)"
+       class="edgeLabel"
+       id="g18">
+      <g
+         transform="translate(-33.833335876464844, -10.5)"
+         data-id="edge3"
+         class="label"
+         id="g17">
+        <foreignObject
+           height="21"
+           width="67.66667175292969">
+          <xhtml:div
+             class="labelBkg"
+             style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+            <xhtml:span
+               class="edgeLabel">
+              <xhtml:p>soft impact</xhtml:p>
+            </xhtml:span>
+          </xhtml:div>
+        </foreignObject>
+      </g>
+    </g>
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-weight:900;font-size:19.0837px;font-family:Raleway;-inkscape-font-specification:'Raleway Heavy';text-align:center;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.36669;stroke-linecap:round"
+     x="76.377701"
+     y="82.591209"
+     id="text23"><tspan
+       sodipodi:role="line"
+       id="tspan23"
+       x="76.377701"
+       y="82.591209"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.0837px;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.36669">DAE</tspan></text>
+  <text
+     xml:space="preserve"
+     transform="translate(4,4)"
+     id="text24"
+     style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:21.3333px;font-family:Roboto;-inkscape-font-specification:'Roboto Light';text-align:center;letter-spacing:2px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect24);display:inline;fill:none;fill-opacity:0.389803;stroke:#000000;stroke-width:2.64567;stroke-linecap:round" />
+  <text
+     xml:space="preserve"
+     style="font-weight:900;font-size:19.0837px;font-family:Raleway;-inkscape-font-specification:'Raleway Heavy';text-align:center;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.36669;stroke-linecap:round"
+     x="259.6629"
+     y="88.256706"
+     id="text25"><tspan
+       sodipodi:role="line"
+       id="tspan25"
+       x="259.6629"
+       y="88.256706"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.0837px;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.36669">ODE</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-weight:900;font-size:14.3128px;font-family:Raleway;-inkscape-font-specification:'Raleway Heavy';text-align:center;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.36669;stroke-linecap:round"
+     x="170.86613"
+     y="43.182217"
+     id="text26"><tspan
+       sodipodi:role="line"
+       id="tspan26"
+       x="170.86613"
+       y="43.182217"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.3128px;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.36669">liftoff</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-weight:900;font-size:14.3128px;font-family:Raleway;-inkscape-font-specification:'Raleway Heavy';text-align:center;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.36669;stroke-linecap:round"
+     x="170.86613"
+     y="94.567139"
+     id="text27"><tspan
+       sodipodi:role="line"
+       id="tspan27"
+       x="170.86613"
+       y="94.567139"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.3128px;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.36669">soft impact</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.3128px;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:center;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.36669;stroke-linecap:round"
+     x="258.51291"
+     y="26.70435"
+     id="text28"><tspan
+       sodipodi:role="line"
+       id="tspan28"
+       x="258.51291"
+       y="26.70435"
+       style="stroke-width:2.36669">hard</tspan><tspan
+       sodipodi:role="line"
+       x="258.51291"
+       y="44.59536"
+       id="tspan29"
+       style="stroke-width:2.36669">impact</tspan></text>
+</svg>

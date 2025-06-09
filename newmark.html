@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Rolling-Bouncing Ball &#8212; Rolling-bouncing ball</title>
+    <title>The Newmark time stepper &#8212; Rolling-bouncing ball</title>
   
   
   
@@ -62,10 +62,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'newmark';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Equations of motion for constrained mechanical systems" href="eqmotion.html" />
+    <link rel="next" title="Calculation of the centrifugal force" href="fcentrif.html" />
+    <link rel="prev" title="Curvature of an implicit curve" href="curvature.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -117,8 +118,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -138,7 +137,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -165,17 +164,17 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Rolling-Bouncing Ball
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="eqmotion.html">Equations of motion for constrained mechanical systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="curvature.html">Curvature of an implicit curve</a></li>
-<li class="toctree-l1"><a class="reference internal" href="newmark.html">The Newmark time stepper</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Newmark time stepper</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fcentrif.html">Calculation of the centrifugal force</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">Switching states</a></li>
 <li class="toctree-l1"><a class="reference internal" href="technicalities.html">Technical details</a></li>
@@ -265,7 +264,7 @@
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/newmark.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -328,7 +327,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -339,11 +340,20 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Rolling-Bouncing Ball</h1>
+    <h1>The Newmark time stepper</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-for-the-ode">Setup for the ODE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-for-the-dae">Setup for the DAE</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -353,83 +363,136 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="rolling-bouncing-ball">
-<h1>Rolling-Bouncing Ball<a class="headerlink" href="#rolling-bouncing-ball" title="Link to this heading">#</a></h1>
-<h3>Event-based mixed DAE/ODE-simulation of mass points.</h3>
-<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
-<div class="sd-card-header docutils">
-<p class="sd-card-text">Supervisor: <strong>Dipl-Ing. Dr.techn. Martin Bicher</strong></p>
-</div>
-<div class="sd-card-body docutils">
-<p class="sd-card-text">Authors:</p>
-<p class="sd-card-text"><strong>Helene Rößler</strong> <br />
-12208195 <br />
-Bachelorstudium Technische Mathematik (033 201)</p>
-<p class="sd-card-text"><strong>Norbert Hammer</strong> <br />
-12225948 <br />
-Bachelorstudium Technische Mathematik (033 201)</p>
-</div>
-<div class="sd-card-footer docutils">
-<p class="sd-card-text">project for Mathematische Modellbildung in der Systemsimulation, summer semester 2025</p>
-</div>
-</div>
-<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
-<div class="sd-card-body docutils">
-<p class="sd-card-text"><strong>Abstract</strong> <br />
-Using both DAE and ODE numerics, the physics of a ball/mass point in 2D can be simulated.
-Here, one approach is documented.
-The ball is able to interact with a curve by rolling along the curve, leaving it, bouncing off of it and landing back on it.</p>
-</div>
-<div class="sd-card-footer docutils">
-<p class="sd-card-text">There is a BinderHub instance available for this project:</p>
-<p class="sd-card-text"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary sd-shadow-sm reference external" href="https://mybinder.org/v2/gh/Homomorpheus/mathmod_ball_dae_ode/main?urlpath=%2Fdoc%2Ftree%2Fsrc%2Frolling-bouncing_ball.ipynb"><span>mybinder</span></a></p>
-</div>
-</div>
-<p>This document is available as a website under:
-<a class="reference external" href="https://homomorpheus.github.io/mathmod_ball_dae_ode/intro.html">https://homomorpheus.github.io/mathmod_ball_dae_ode/intro.html</a></p>
-<video width=100% controls>
-      <source src="./_static/blob.mp4" type="video/mp4">
-</video>
-<video width=100% controls>
-      <source src="./_static/bead.mp4" type="video/mp4">
-</video>
-<br>
-<br>
-<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
-<div class="sd-card-body docutils">
-<div class="sd-card-title sd-font-weight-bold docutils">
-Work distribution</div>
-<p class="sd-card-text">Helene Rößler: ODE/DAE numerics, state switching <br />
-Norbert Hammer: equations of motion, curvature calculation</p>
-</div>
-</div>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="eqmotion.html">Equations of motion for constrained mechanical systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="curvature.html">Curvature of an implicit curve</a></li>
-<li class="toctree-l1"><a class="reference internal" href="newmark.html">The Newmark time stepper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fcentrif.html">Calculation of the centrifugal force</a></li>
-<li class="toctree-l1"><a class="reference internal" href="events.html">Switching states</a></li>
-<li class="toctree-l1"><a class="reference internal" href="technicalities.html">Technical details</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="bead_wire.html">Bead on a wire</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bead_friction.html">Bead with friction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rolling-bouncing_ball.html">Rolling-Bouncing Ball</a></li>
-<li class="toctree-l1"><a class="reference internal" href="donut.html">Donut shape</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bounce_threshold.html">Different Bounce Thresholds</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
-</ul>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="the-newmark-time-stepper">
+<h1>The Newmark time stepper<a class="headerlink" href="#the-newmark-time-stepper" title="Link to this heading">#</a></h1>
+<p>This project uses the Newmark solver for both DAEs and ODEs.
+In general we start out with an equation</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  F = M \ddot{x} + C \dot{x} + Kx
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(x(t) \in \mathbb{R}^{m}\)</span> is the (generalized) position vector and <span class="math notranslate nohighlight">\(M, C, K \in \mathbb{R}^{m \times m}\)</span>
+denote mass, damping and stiffness matrix.</p>
+<p>Now let <span class="math notranslate nohighlight">\(x_n, v_n := \dot{x}_n, a_n := \ddot{x}_n\)</span> be position, velocity, and acceleration at
+timestep <span class="math notranslate nohighlight">\(t_n\)</span>. To approximate their values at <span class="math notranslate nohighlight">\(t_{n+1} := t_n + h\)</span> the Newmark-<span class="math notranslate nohighlight">\(\beta\)</span> method
+gives us the following equations:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  F_{n+1} &amp;= M a_{n+1} + C v_{n+1} + K q_{n+1}\\
+  v_{n+1} &amp;= v_{n} + h\left({\left(1 - \gamma\right) a_{n} + \gamma{a_{n+1}}}\right)\\
+  x_{n+1} &amp;= x_{n} + h v_{n} + \frac{h^2}{2} \left({\left(1 - 2\beta\right) a_{n} + 2\beta a_{n+1}}\right)
+\end{align*}\]</div>
+<p><span id="id1">[<a class="reference internal" href="bibliography.html#id13" title="Bogdan Gavrea, Dan Negrut, and Florian Potra. The newmark integration method for simulation of multibody systems: analytical considerations. In The Newmark Integration Method for Simulation of Multibody Systems: Analytical Considerations, volume 118. 01 2005. doi:10.1115/IMECE2005-81770.">GNP05</a>, page 2]</span></p>
+<!-- This family of solvers is non-canonically symplectic and preserves a non-standard momentum. {cite}`newmark_sympl{page 3}` -->
+<p>We will use the specific case <span class="math notranslate nohighlight">\(\beta = \frac{1}{4}, \gamma = \frac{1}{2}\)</span>.
+In this case, the solver has quadratic accuracy. <span id="id2">[<a class="reference internal" href="bibliography.html#id13" title="Bogdan Gavrea, Dan Negrut, and Florian Potra. The newmark integration method for simulation of multibody systems: analytical considerations. In The Newmark Integration Method for Simulation of Multibody Systems: Analytical Considerations, volume 118. 01 2005. doi:10.1115/IMECE2005-81770.">GNP05</a>, page 2]</span>
+<span class="math notranslate nohighlight">\(K\)</span> is not required for the project, we choose <span class="math notranslate nohighlight">\(K = \mathbf{0} \in \mathbb{R}^{m \times m}\)</span>.</p>
+<p>We end up with</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  F(x_{n+1}) &amp;= M a_{n+1} + C v_{n+1}\\
+  v_{n+1} &amp;= v_n + \frac{h}{2} (a_n + a_{n+1})\\
+  x_{n+1} &amp;= x_n + h v_n + \frac{h^2}{4} (a_n + a_{n+1}).
+\end{align*}\]</div>
+<section id="setup-for-the-ode">
+<h2>Setup for the ODE<a class="headerlink" href="#setup-for-the-ode" title="Link to this heading">#</a></h2>
+<p>Let us first consider the flying phase, meaning the current position of the ball is not on the
+curve and we need to solve an ODE.
+Here we set <span class="math notranslate nohighlight">\(C = \mathbf{0} \in \mathbb{R}^{2 \times 2}\)</span>, as well as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+M =
+\begin{pmatrix}
+    m &amp; 0 \\
+    0 &amp; m
+  \end{pmatrix}
+  ~~~\text{ and }~~~
+  F = mg
+\end{equation*}\]</div>
+<p>for mass <span class="math notranslate nohighlight">\(m \in \mathbb{R}\)</span> and gravitational acceleration <span class="math notranslate nohighlight">\(g \in \mathbb{R}^{2}\)</span>.</p>
+<p>As initial values <span class="math notranslate nohighlight">\(x_0, v_0\)</span> and <span class="math notranslate nohighlight">\(a_0\)</span> the algorithm simply receives the current position,
+velocity and acceleration of the ball.</p>
+</section>
+<section id="setup-for-the-dae">
+<h2>Setup for the DAE<a class="headerlink" href="#setup-for-the-dae" title="Link to this heading">#</a></h2>
+<p>On the other hand, if the ball is currently in the rolling phase, we are dealing with a
+constrained system and need to solve a DAE.
+In this case we set <span class="math notranslate nohighlight">\(M = \tilde{M}\)</span> and <span class="math notranslate nohighlight">\(F = \tilde{F}\)</span> as defined in <a class="reference internal" href="eqmotion.html#equation-eq-dae-eq">(3)</a>. If we want
+to add a velocity-dependent damping factor <span class="math notranslate nohighlight">\(c \in \mathbb{R}\)</span>, we define a damping matrix</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  C :=
+  \begin{pmatrix}
+    c &amp; 0 &amp; 0\\
+    0 &amp; c &amp; 0\\
+	0 &amp; 0 &amp; 0
+  \end{pmatrix},
+\end{equation*}\]</div>
+<p>otherwise we set <span class="math notranslate nohighlight">\(C = \mathbf{0} \in \mathbb{R}^{3 \times 3}\)</span>.</p>
+<p>Here the initial values are going to be a bit more complicated.
+First, we devide the vector <span class="math notranslate nohighlight">\(x_n\)</span> into</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  x_n =
+  \begin{pmatrix}
+  q_n\\
+  \lambda_n
+  \end{pmatrix}
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(q_n \in \mathbb{R}^{2}\)</span> and <span class="math notranslate nohighlight">\(\lambda_n \in \mathbb{R}\)</span>.
+The value for <span class="math notranslate nohighlight">\(q_0\)</span> will be the current position of the ball on the curve.</p>
+<p>If we now split our Newmark equations in the same mannner, we get:</p>
+<div class="math notranslate nohighlight" id="equation-eq-dae-sys">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-dae-sys" title="Link to this equation">#</a></span>\[\begin{split}  mg + \lambda_{n+1} \nabla G(q_{n+1})
+  &amp;=
+  \begin{pmatrix}
+    m &amp; 0 \\
+    0 &amp; m
+  \end{pmatrix}
+  \ddot{q}_{n+1}
+  +
+  \begin{pmatrix}
+    c &amp; 0 \\
+    0 &amp; c
+  \end{pmatrix}
+  \dot{q}_{n+1}\\
+  G(q) &amp;= 0\\\end{split}\]</div>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  \dot{q}_{n+1} &amp;= \dot{q}_n + \frac{h}{2} (\ddot{q}_n + \ddot{q}_{n+1})\\
+  \dot{\lambda}_{n+1} &amp;= \dot{\lambda}_n + \frac{h}{2} (\ddot{\lambda}_n + \ddot{\lambda}_{n+1})\\
+  \\
+  q_{n+1} &amp;= q_n + h \dot{q}_n + \frac{h^2}{4} (\ddot{q}_n + \ddot{q}_{n+1})\\
+  \lambda_{n+1} &amp;= \lambda_n + h \dot{\lambda}_n + \frac{h^2}{4} (\ddot{\lambda}_n + \ddot{\lambda}_{n+1})
+\end{align*}\]</div>
+<p>The Lagrange parameter <span class="math notranslate nohighlight">\(\lambda_n\)</span> enforces the constraint <span class="math notranslate nohighlight">\(G(q_n)=0\)</span> but is not needed to
+determine <span class="math notranslate nohighlight">\(q_{n+1}\)</span> or <span class="math notranslate nohighlight">\(\dot{q}_{n+1}\)</span>.
+The value <span class="math notranslate nohighlight">\(\lambda_{n+1}\)</span> is solved implicitly as part of the DAE system <a class="reference internal" href="#equation-eq-dae-sys">(5)</a>
+and therefore <span class="math notranslate nohighlight">\(\lambda\)</span> does not require an initial value to compute. Since that also implies that initial
+values for <span class="math notranslate nohighlight">\(\dot{\lambda}\)</span> and <span class="math notranslate nohighlight">\(\ddot{\lambda}\)</span> are not required, we will ignore those in the
+consideration of initial velocity and acceleration.</p>
+<p>For the initial velocity we take a look at our constraint <span class="math notranslate nohighlight">\(G\)</span>. We know that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  G(q) = 0.
+\end{equation*}\]</div>
+<p>Differentiation on both sides leads to</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  \nabla G(q)v = 0
+\end{equation*}\]</div>
+<p>and since <span class="math notranslate nohighlight">\(\nabla G(q)\)</span> is the  normal vector, that means that <span class="math notranslate nohighlight">\(v\)</span> has to be tangential.
+<span id="id3">[<a class="reference internal" href="bibliography.html#id11" title="Ron Goldman. Curvature formulas for implicit curves and surfaces. Computer Aided Geometric Design, 22(7):632-658, 2005. Geometric Modelling and Differential Geometry. URL: https://www.sciencedirect.com/science/article/pii/S0167839605000737, doi:https://doi.org/10.1016/j.cagd.2005.06.005.">Gol05</a>, page 636f]</span>
+We simply project the current velocity of the ball to the tangent vector and use the result
+as the initial value <span class="math notranslate nohighlight">\(v_0\)</span>.</p>
+<p>Lastly, to determine the starting acceleration, we use the following formula for the acceleration
+along a curve:</p>
+<div class="math notranslate nohighlight" id="equation-eq-accel-start">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-accel-start" title="Link to this equation">#</a></span>\[  \mathbf{\tilde{a}} = a \tau + \kappa v^2 \nu,\]</div>
+<p>where <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are tangential acceleration and velocity, <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(\nu\)</span> are tangent and normal
+vector and <span class="math notranslate nohighlight">\(\kappa\)</span> is the curvature of the curve, and set <span class="math notranslate nohighlight">\(a_0 = \tilde{a}\)</span>.
+<span id="id4">[<a class="reference internal" href="bibliography.html#id5" title="David Guichard and Whitman College Mathematics Department. 13.4 motion along a curve. Accessed: 2025-06-08. URL: https://www.whitman.edu/mathematics/calculus_online/section13.04.html.">GD</a>]</span></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -462,12 +525,21 @@ Norbert Hammer: equations of motion, curvature calculation</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="curvature.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Curvature of an implicit curve</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="eqmotion.html"
+       href="fcentrif.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Equations of motion for constrained mechanical systems</p>
+        <p class="prev-next-title">Calculation of the centrifugal force</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -477,6 +549,23 @@ Norbert Hammer: equations of motion, curvature calculation</p>
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-for-the-ode">Setup for the ODE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-for-the-dae">Setup for the DAE</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

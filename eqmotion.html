@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Notebooks with MyST Markdown &#8212; My sample book</title>
+    <title>Equations of motion for constrained mechanical systems &#8212; Rolling-bouncing ball</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,10 +60,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'markdown-notebooks';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'eqmotion';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Markdown Files" href="markdown.html" />
+    <link rel="next" title="Curvature of an implicit curve" href="curvature.html" />
+    <link rel="prev" title="Rolling-Bouncing Ball" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -145,8 +148,8 @@
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Rolling-bouncing ball - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Rolling-bouncing ball - Home"/>
   
   
 </a></div>
@@ -167,12 +170,26 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="genalpha.html">The generalized-𝛂 solver</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Equations of motion for constrained mechanical systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curvature.html">Curvature of an implicit curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="newmark.html">The Newmark time stepper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fcentrif.html">Calculation of the centrifugal force</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Switching states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technicalities.html">Technical details</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bead_wire.html">Bead on a wire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bead_friction.html">Bead with friction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rolling-bouncing_ball.html">Rolling-Bouncing Ball</a></li>
+<li class="toctree-l1"><a class="reference internal" href="donut.html">Donut shape</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bounce_threshold.html">Different Bounce Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Notebooks with MyST Markdown</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -221,55 +238,6 @@
 <div class="article-header-buttons">
 
 
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://mybinder.org/v2/gh/Homomorpheus/mathmod_ball_dae_ode/main?urlpath=tree/docs/markdown-notebooks.md" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Binder"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Binder logo" src="_static/images/logo_binder.svg">
-  </span>
-<span class="btn__text-container">Binder</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
 <a href="https://github.com/Homomorpheus/mathmod_ball_dae_ode" target="_blank"
    class="btn btn-sm btn-source-repository-button"
    title="Source repository"
@@ -296,24 +264,7 @@
       
       
       
-      <li><a href="_sources/markdown-notebooks.ipynb" target="_blank"
-   class="btn btn-sm btn-download-notebook-button dropdown-item"
-   title="Download notebook file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="_sources/markdown-notebooks.md" target="_blank"
+      <li><a href="_sources/eqmotion.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -389,7 +340,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notebooks with MyST Markdown</h1>
+    <h1>Equations of motion for constrained mechanical systems</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -399,9 +350,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-the-principle-of-least-action">From the principle of least action</a></li>
 </ul>
             </nav>
         </div>
@@ -413,45 +362,94 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="notebooks-with-myst-markdown">
-<h1>Notebooks with MyST Markdown<a class="headerlink" href="#notebooks-with-myst-markdown" title="Link to this heading">#</a></h1>
-<p>Jupyter Book also lets you write text-based notebooks using MyST Markdown.
-See <a class="reference external" href="https://jupyterbook.org/file-types/myst-notebooks.html">the Notebooks with MyST Markdown documentation</a> for more detailed instructions.
-This page shows off a notebook written in MyST Markdown.</p>
-<section id="an-example-cell">
-<h2>An example cell<a class="headerlink" href="#an-example-cell" title="Link to this heading">#</a></h2>
-<p>With MyST Markdown, you can define code cells with a directive like so:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>When your book is built, the contents of any <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Jupyter Book uses <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/">Jupytext</a> to convert text-based files to notebooks, and can support <a class="reference external" href="https://jupyterbook.org/file-types/jupytext.html">many other text-based notebook files</a>.</p>
-</div>
-</section>
-<section id="create-a-notebook-with-myst-markdown">
-<h2>Create a notebook with MyST Markdown<a class="headerlink" href="#create-a-notebook-with-myst-markdown" title="Link to this heading">#</a></h2>
-<p>MyST Markdown notebooks are defined by two things:</p>
-<ol class="arabic simple">
-<li><p>YAML metadata that is needed to understand if / how it should convert text files to notebooks (including information about the kernel needed).
-See the YAML at the top of this page for example.</p></li>
-<li><p>The presence of <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> directives, which will be executed with your book.</p></li>
-</ol>
-<p>That’s all that is needed to get started!</p>
-</section>
-<section id="quickly-add-yaml-metadata-for-myst-notebooks">
-<h2>Quickly add YAML metadata for MyST Notebooks<a class="headerlink" href="#quickly-add-yaml-metadata-for-myst-notebooks" title="Link to this heading">#</a></h2>
-<p>If you have a markdown file and you’d like to quickly add YAML metadata to it, so that Jupyter Book will treat it as a MyST Markdown Notebook, run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">myst</span> <span class="n">init</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">markdownfile</span><span class="o">.</span><span class="n">md</span>
-</pre></div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="equations-of-motion-for-constrained-mechanical-systems">
+<h1>Equations of motion for constrained mechanical systems<a class="headerlink" href="#equations-of-motion-for-constrained-mechanical-systems" title="Link to this heading">#</a></h1>
+<section id="from-the-principle-of-least-action">
+<h2>From the principle of least action<a class="headerlink" href="#from-the-principle-of-least-action" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(q(t) \in \mathbb{R}^2\)</span> be the position of a mass point (ball) with Lagrangian function <span class="math notranslate nohighlight">\(L\)</span>.
+Assume that the mass point is subjected to a constraint <span class="math notranslate nohighlight">\(G(q) \in C^2(\mathbb{R}^2, \mathbb{R})\)</span> with Lagrange parameter <span class="math notranslate nohighlight">\(\lambda\)</span>.
+Then the action of the object is given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  \tilde{S} = \int_0^T L(q, \dot{q}) + \lambda G(q) \ dt,
+\end{equation*}\]</div>
+<p>for <span class="math notranslate nohighlight">\(q(0),~ q(T)\)</span> fixed. <span id="id1">[<a class="reference internal" href="bibliography.html#id12" title="Vincent de Sapio, Oussama Khatib, and Scott Delp. Least action principles and their application to constrained and task-level problems in robotics and biomechanics. Multibody System Dynamics, 19(3):303 - 322, 2008. URL: https://hal.science/hal-01380098, doi:10.1007/s11044-007-9097-8.">dSKD08</a>, Equation 4]</span>
+The stationary condition <span class="math notranslate nohighlight">\(0 = \delta \tilde{S}\)</span> under the condition <span class="math notranslate nohighlight">\(\delta q(0) = \delta q(T) = 0\)</span> yields</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  0 = \delta \tilde{S}
+  &amp; = \frac{\partial}{\partial \varepsilon } \int_0^T L(q + \varepsilon \delta q, \dot{q} + \varepsilon \dot{\delta q})
+            + \lambda \cdot G(q + \varepsilon \delta q) \ dt \Biggr\rvert_{\varepsilon = 0} \\
+  &amp; = \int_0^T \frac{\partial L}{\partial q} (q, \dot{q}) \cdot \delta q + \frac{\partial L}{\partial \dot{q}} (q, \dot{q}) \cdot \delta \dot{q}
+            + \lambda \cdot G(q) \cdot \delta q \ dt \\
+  &amp; = \frac{\partial L}{\partial \dot{q}} (q, \dot{q}) \cdot \delta q \Biggr\rvert_{t=0}^{t=T}
+            + \int_0^T \left( \frac{\partial L}{\partial q} (q, \dot{q}) - \frac{\partial}{\partial t} \frac{\partial L}{\partial \dot{q}} (q, \dot{q})
+            + \lambda \cdot G(q) \right) \cdot \delta q \ dt
+\end{align*}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  0 = G(q).
+\end{equation*}\]</div>
+<p>The resulting DAE is</p>
+<div class="math notranslate nohighlight" id="equation-eq-el">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-el" title="Link to this equation">#</a></span>\[\begin{split}  \frac{\partial L}{\partial q} (q, \dot{q}) - \frac{\partial}{\partial t} \frac{\partial L}{\partial \dot{q}} (q, \dot{q})
+              + \lambda \cdot G(q) &amp;= 0 \\
+  G(q) &amp;= 0.\end{split}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(U\)</span> denote the potential energy of a mass point with mass <span class="math notranslate nohighlight">\(m\)</span>, and <span class="math notranslate nohighlight">\(T\)</span> its kinetic energy.
+Also, let the mass point be subjected to a force <span class="math notranslate nohighlight">\(F\)</span>. Then we know that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  T(\dot{q}) &amp;= \frac{1}{2} \dot{q} \cdot m \dot{q}\\
+  \nabla U(q) &amp;= F \\
+  L &amp;= T(\dot{q}) - U(q).
+\end{align*}\]</div>
+<p><span id="id2">[<a class="reference internal" href="bibliography.html#id3" title="Matthias Bartelmann, Björn Feuerbacher, Timm Krüger, Dieter Lüst, Anton Rebhan, and Andreas Wipf. Theoretische Physik. Springer Berlin Heidelberg, Berlin, Heidelberg, 2015. ISBN 3642546188. URL: 10.1007/978-3-642-54618-1.">BFK+15</a>, page 178]</span></p>
+<p>Thus, <a class="reference internal" href="#equation-eq-el">(1)</a> reduces to</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  F - m \ddot{q} + \lambda \cdot G(q) &amp;= 0 \\
+  G(q) &amp;= 0.
+\end{align*}\]</div>
+<p>If we now define the mass matrix</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  M :=
+  \begin{pmatrix}
+    m &amp; 0 \\
+    0 &amp; m
+  \end{pmatrix},
+\end{equation*}\]</div>
+<p>the motion of our ball is described by</p>
+<div class="math notranslate nohighlight" id="equation-eq-motion">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-motion" title="Link to this equation">#</a></span>\[\begin{split}  M \ddot{q} &amp;= F + \lambda \nabla G(q)\\
+  0 &amp;= G(q).\end{split}\]</div>
+<p>In our case, we will mainly subject it to the gravitational force</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  mg
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(g \in \mathbb{R}^2\)</span> denotes a constant directional acceleration that serves to simulate gravity.
+Throughout the project, other forces have also been added to this.</p>
+<p>If we now define</p>
+<div class="math notranslate nohighlight" id="equation-eq-dae-eq">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-dae-eq" title="Link to this equation">#</a></span>\[\begin{split}  \tilde{M} :=
+  \begin{pmatrix}
+    m &amp; 0 &amp; 0 \\
+    0 &amp; m &amp; 0 \\
+    0 &amp; 0 &amp; 0
+  \end{pmatrix}
+  ~~~\text{ and }~~~
+  \tilde{F} :=
+  \begin{pmatrix}
+    F + \lambda \nabla G(q)\\
+    G(q)
+  \end{pmatrix},\end{split}\]</div>
+<p>Equation <a class="reference internal" href="#equation-eq-motion">(2)</a> turns into</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\tilde{M} \begin{pmatrix} \ddot{q} \\ \ddot{\lambda} \end{pmatrix} = \tilde{F}.
+\end{equation*}\]</div>
 </section>
 </section>
 
@@ -486,13 +484,22 @@ See the YAML at the top of this page for example.</p></li>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="markdown.html"
+       href="intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Markdown Files</p>
+        <p class="prev-next-title">Rolling-Bouncing Ball</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="curvature.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Curvature of an implicit curve</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -511,9 +518,7 @@ See the YAML at the top of this page for example.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-the-principle-of-least-action">From the principle of least action</a></li>
 </ul>
   </nav></div>
 
@@ -528,20 +533,13 @@ See the YAML at the top of this page for example.</p></li>
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book Community
+By Helene Rößler, Norbert Hammer
 </p>
 
   </div>
   
   <div class="footer-item">
     
-
-  <p class="copyright">
-    
-      © Copyright 2023.
-      <br/>
-    
-  </p>
 
   </div>
   
