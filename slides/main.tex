@@ -112,19 +112,17 @@
 
 \section{Newmark-Verfahren}
 
-\begin{frame}{Einführung}
+\begin{frame}{Allgemeine Form}
 Ausgangssituation ist eine Bewegungsgleichung der Form:
 \begin{equation*}
 	F = M \ddot{x} + C \dot{x} + Kx
 \end{equation*}
 
 \begin{itemize}
-	\item $x(t) \in \mathbb{R}^{m}$: generalisierter Ortsvektor
+	\item $x(t) \in \mathbb{R}^{m}$: Ortsvektor
 	\item $M, C, K \in \mathbb{R}^{m \times m}$: Massen-, Dämpfungs- und Steifigkeitsmatrix
 \end{itemize}
-
 \end{frame}
-
 
 \begin{frame}{Allgemeine Form}
 
@@ -145,7 +143,6 @@ Ausgangssituation ist eine Bewegungsgleichung der Form:
 
 
 \begin{frame}{Spezialfall}
-
 \begin{itemize}
 	\item  $\beta = \frac{1}{4}, \gamma = \frac{1}{2}$ $\Rightarrow$ quadratische Genauigkeit
 	\item $K = \mathbf{0} \in \mathbb{R}^{m \times m}$
@@ -156,14 +153,12 @@ Führt zu
 	v_{n+1} &= v_n + \frac{h}{2} (a_n + a_{n+1})\\
 	x_{n+1} &= x_n + h v_n + \frac{h^2}{4} (a_n + a_{n+1}).
 \end{align*}
-
 \end{frame}
 
 \begin{frame}{Setup für die ODE}
-
-\textbf{Fall:} Ball befindet sich in der Flugphase, wir lösen eine ODE\\
+\textbf{Fall:} Ball befindet sich in der Flugphase\\
+\pause
 \vspace{0.3cm}
-\textbf{Annahmen:}
 	\begin{itemize}
 		\item Dämpfung: $C = \mathbf{0} \in \mathbb{R}^{2 \times 2}$
 		\item Massenmatrix:
@@ -174,16 +169,15 @@ Führt zu
 			0 & m
 		\end{pmatrix}
 		\]
-		\item Kraftvektor (Gravitation): \quad $F = m g$, \quad wobei $g \in \mathbb{R}^2$
+		\item Kraftvektor (Gravitation): \quad $F = m g$
 		\item Anfangswerte: $x_0, v_0$ und $a_0$ werden vom Algorithmus direkt als aktueller Zustand des Balls übernommen.
 	\end{itemize}
-
 \end{frame}
 
 \begin{frame}{Setup für die DAE}
-\textbf{Fall:} Ball befindet sich in der Rollphase, wir lösen eine DAE\\
+\textbf{Fall:} Ball befindet sich in der Rollphase\\
+\pause
 \vspace{0.3cm}
-\textbf{Annahmen:}
 \begin{itemize}
 	\item Dämpfung (durch Dämpfungsfaktor $c \in \mathbb{R}$) und Masse:
 	\begin{equation*}
@@ -209,18 +203,16 @@ Führt zu
 	\end{pmatrix}.
 	\]
 \end{itemize}
-
 \end{frame}
 
-
-\begin{frame}{Anfangswerte für die DAE}
-
+\begin{frame}{Setup für die DAE}
+Anfangswerte:
 \begin{itemize}
 	\item $x_0$: aktuelle Position des Balls
 	\item $v_0$: Tangentialgeschwindigkeit
 	\item $a_0$: Formel für Beschleunigung entlang einer Kurve:
 	\[
-	a_0 = a \tau + \kappa v^2 \nu
+	a_0 = a \tau + \kappa \| v_0 \|^2 \nu
 	\]
 
 	\qquad mit Tangentialvektor $\tau$, Normalvektor $\nu$ und\\
@@ -228,7 +220,6 @@ Führt zu
 
 	\item kein Startwert für $\lambda$ benötigt
 \end{itemize}
-
 \end{frame}
 
 \section{Zentrifugalkraft}
@@ -248,8 +239,70 @@ Führt zu
 \end{itemize}
 \end{frame}
 
-\begin{frame}[standout]
-    Gibt es Fragen?
+\section{Zustandswechsel}
+
+\begin{frame}{graphisch}
+	\includegraphics[scale=0.35]{./state_flowchart_2.png}
 \end{frame}
+
+\begin{frame}{DAE zu ODE (Ball hebt ab)}
+\begin{itemize}
+	\item Gesamtkraft in Normalrichtung:
+	\[
+	F_{\nu} = F_g + F_c
+	\]
+	mit
+	\begin{itemize}
+		\item Gravitation in Normalrichtung $F_g = (mg, \nu)$
+		\item Zentrifugalkraft $F_c$
+	\end{itemize}
+	\item Wechsel sobald
+	\[ 
+	F_{\nu} < 0
+	\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Aufprall auf die Kurve}	
+	\begin{itemize}
+		\item Kurve ist definiert über $G(x) = 0$
+		\item Inneres entweder $G(x) < 0$ oder $G(x) > 0$ (konfigurierbar)
+		\item Aufprall, wenn $\operatorname{sign}(G(x))$ wechselt
+	\end{itemize}
+	\pause
+	
+	\textbf{Folgen:}
+	\begin{itemize}
+		\item Projektion der Position $x$ auf Kurve
+		\item Zerlegung der Geschwindigkeit in Tangential- und Normalanteil
+		\item Dämpfung der Anteile
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{ODE zu DAE/ODE}
+	\textbf{Wechsel zur DAE} (Ball rollt wieder)
+	\begin{itemize}
+		\item Normalgeschwindigkeit nach Aufprall $<$ Schwelle
+		\pause
+		\item Normalgeschwindigkeit = 0 gesetzt
+		\item Beschleunigung:
+		\[
+		\mathbf{a}_{DAE} = (\mathbf{a}_{ODE}, \tau) \tau + \kappa \| \mathbf{v}_{DAE} \|^2 \nu
+		\]
+	\end{itemize}
+	\pause
+	\textbf{Weiter ODE} (Ball prallt ab)
+	\begin{itemize}
+		\item Normalgeschwindigkeit $\geq$ Schwelle
+		\pause
+		\item Normalgeschwindigkeit wird gespiegelt
+		\item Beschleunigung bleibt gleich
+	\end{itemize}
+\end{frame} 
+
+\begin{frame}[standout]
+	Gibt es Fragen?
+\end{frame}
+
 
 \end{document}
