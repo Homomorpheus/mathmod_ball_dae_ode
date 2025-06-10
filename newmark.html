@@ -481,17 +481,44 @@ consideration of initial velocity and acceleration.</p>
 \[\begin{equation*}
   \nabla G(q)v = 0
 \end{equation*}\]</div>
-<p>and since <span class="math notranslate nohighlight">\(\nabla G(q)\)</span> is the  normal vector, that means that <span class="math notranslate nohighlight">\(v\)</span> has to be tangential.
+<p>and since <span class="math notranslate nohighlight">\(\nabla G(q)\)</span> is the normal vector, that means that <span class="math notranslate nohighlight">\(v\)</span> has to be tangential.
 <span id="id3">[<a class="reference internal" href="bibliography.html#id11" title="Ron Goldman. Curvature formulas for implicit curves and surfaces. Computer Aided Geometric Design, 22(7):632-658, 2005. Geometric Modelling and Differential Geometry. URL: https://www.sciencedirect.com/science/article/pii/S0167839605000737, doi:https://doi.org/10.1016/j.cagd.2005.06.005.">Gol05</a>, page 636f]</span>
 We simply project the current velocity of the ball to the tangent vector and use the result
 as the initial value <span class="math notranslate nohighlight">\(v_0\)</span>.</p>
 <p>Lastly, to determine the starting acceleration, we use the following formula for the acceleration
 along a curve:</p>
 <div class="math notranslate nohighlight" id="equation-eq-accel-start">
-<span class="eqno">(6)<a class="headerlink" href="#equation-eq-accel-start" title="Link to this equation">#</a></span>\[  \mathbf{\tilde{a}} = a \tau + \kappa v^2 \nu,\]</div>
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-accel-start" title="Link to this equation">#</a></span>\[  \mathbf{\tilde{a}} = a \tau + \kappa \| v \|^2 \nu,\]</div>
 <p>where <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are tangential acceleration and velocity, <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(\nu\)</span> are tangent and normal
-vector and <span class="math notranslate nohighlight">\(\kappa\)</span> is the curvature of the curve, and set <span class="math notranslate nohighlight">\(a_0 = \tilde{a}\)</span>.
-<span id="id4">[<a class="reference internal" href="bibliography.html#id5" title="David Guichard and Whitman College Mathematics Department. 13.4 motion along a curve. Accessed: 2025-06-08. URL: https://www.whitman.edu/mathematics/calculus_online/section13.04.html.">GD</a>]</span></p>
+vector and <span class="math notranslate nohighlight">\(\kappa\)</span> is the curvature of the curve, and set <span class="math notranslate nohighlight">\(a_0 = \tilde{a}\)</span>.</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text"><strong>Proof of <a class="reference internal" href="#equation-eq-accel-start">(6)</a>:</strong><br />
+Note that <span class="math notranslate nohighlight">\(q(t)\)</span> - for a mass point on a curve - is a parametrization of
+(a part of) the curve.
+We know from above that the tangent vector at <span class="math notranslate nohighlight">\(q(t)\)</span> can be written as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  \tau(t) = \frac{\dot{q}(t)}{ \| \dot{q}(t) \| },
+\end{equation*}\]</div>
+<p class="sd-card-text">which implies <span class="math notranslate nohighlight">\(\dot{q} = \| \dot{q} \| \tau\)</span>.
+We also know that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  \dot{\tau} = \kappa \| \dot{q} \| \nu.
+\end{equation*}\]</div>
+<p class="sd-card-text">(This is one of the “Frenet equations”, adapted from <span id="id4">[<a class="reference internal" href="bibliography.html#id15" title="Prof. Dr. Michael Herrmann. Skriptum der Vorlesung Analysis von Kurven und Flächen. Technical university Braunschweig, 2021. URL: https://www.tu-braunschweig.de/fileadmin/Redaktionsgruppen/Institute_Fakultaet_1/IPDE/mherrmann_docs/ga_script_210703.pdf.">Her21</a>, Equation 1.7]</span>
+under the consideration that <span class="math notranslate nohighlight">\(q\)</span> is not an arc-length parameterisation.)
+Putting the above together yields</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  \mathbf{\tilde{a}} = \ddot{q} = \frac{\partial \| \dot{q} \| \tau}{\partial t}
+    = \frac{\partial \| \dot{q} \| }{\partial t}\tau + \| \dot{q} \| \dot{\tau}
+    = a \tau + \| v \| \dot{\tau}
+    = a \tau + \kappa \| v \|^2 \nu.
+\end{equation*}\]</div>
+</div>
+</div>
 </section>
 </section>
 

@@ -327,9 +327,7 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -345,15 +343,6 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-a-circle">On a circle</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-general-curves">On general curves</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -372,27 +361,29 @@ one can determine whether the object is pressed towards or away from the
 surface/curve.</p>
 <p>Note that the centrifugal force does not have to correspond to the constraint
 force <span class="math notranslate nohighlight">\(\lambda \nabla G(q)\)</span> <span id="id1">[<a class="reference internal" href="bibliography.html#id3" title="Matthias Bartelmann, Björn Feuerbacher, Timm Krüger, Dieter Lüst, Anton Rebhan, and Andreas Wipf. Theoretische Physik. Springer Berlin Heidelberg, Berlin, Heidelberg, 2015. ISBN 3642546188. URL: 10.1007/978-3-642-54618-1.">BFK+15</a>, page 202]</span>.</p>
-<section id="on-a-circle">
-<h2>On a circle<a class="headerlink" href="#on-a-circle" title="Link to this heading">#</a></h2>
-<p>Let <span class="math notranslate nohighlight">\(m, q(t)\)</span> and <span class="math notranslate nohighlight">\(\omega(t)\)</span> be the mass, position and angular velocity of a particle on a circular curve
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Excursion: Centrifugal force on a circle</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<!-- :open: -->
+<p class="sd-card-text">Let <span class="math notranslate nohighlight">\(m, q(t)\)</span> and <span class="math notranslate nohighlight">\(\omega(t)\)</span> be the mass, position and angular velocity of a particle on a circular curve
 around the origin of the reference frame.
 Then the centrifugal force acting on the particle is</p>
 <div class="math notranslate nohighlight">
 \[
   \hat{F}_c = m ~ \omega \times (q \times \omega).
 \]</div>
-<p><span id="id2">[<a class="reference internal" href="bibliography.html#id8" title="Wolfgang Demtröder. Experimentalphysik 1 : Mechanik und Wärme. Springer-Lehrbuch. Springer Berlin Heidelberg, Berlin, Heidelberg, 7. aufl. 2015 edition, 2015. ISBN 3662464152. URL: 10.1007/978-3-662-46415-1.">Dem15</a>, page 82]</span> This vector form can be simplified using the identity
+<p class="sd-card-text"><span id="id2">[<a class="reference internal" href="bibliography.html#id8" title="Wolfgang Demtröder. Experimentalphysik 1 : Mechanik und Wärme. Springer-Lehrbuch. Springer Berlin Heidelberg, Berlin, Heidelberg, 7. aufl. 2015 edition, 2015. ISBN 3662464152. URL: 10.1007/978-3-662-46415-1.">Dem15</a>, page 82]</span> This vector form can be simplified using the identity
 <span class="math notranslate nohighlight">\(a \times (b \times c) = b(a \cdot c) - c(a \cdot b)\)</span> <span id="id3">[<a class="reference internal" href="bibliography.html#id8" title="Wolfgang Demtröder. Experimentalphysik 1 : Mechanik und Wärme. Springer-Lehrbuch. Springer Berlin Heidelberg, Berlin, Heidelberg, 7. aufl. 2015 edition, 2015. ISBN 3662464152. URL: 10.1007/978-3-662-46415-1.">Dem15</a>, page 409, Equation 13.9]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
   \hat{F}_c = m ~ \omega \times (q \times \omega) = m(q (\omega \cdot \omega) - \omega (\underbrace{\omega \cdot q}_{=0})) = m q \| \omega \|^2
 \]</div>
-<p>This vectorial force is normal to the curve. Since we are only interested in the normal part of the force, we define</p>
+<p class="sd-card-text">This vectorial force is normal to the curve. Since we are only interested in the normal part of the force, we define</p>
 <div class="math notranslate nohighlight">
 \[
   F_c := \| \hat{F}_c \| = m r \| \omega \|^2,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(r\)</span> is the radius of the circular curve.
+<p class="sd-card-text">where <span class="math notranslate nohighlight">\(r\)</span> is the radius of the circular curve.
 In addition, we know that <span class="math notranslate nohighlight">\(\dot{q} = \omega \times q\)</span> <span id="id4">[<a class="reference internal" href="bibliography.html#id9" title="Darryl D Holm. Geometric mechanics : 2. Rotating, translating and rolling. World Scientific Publ. Imperial College Press, Singapore [u.a.] London, 2008. ISBN 1848161557.">Hol08</a>, Equation 2.1.7, Remark 2.1.16]</span>.
 As (without loss of generality)</p>
 <div class="amsmath math notranslate nohighlight">
@@ -411,7 +402,7 @@ As (without loss of generality)</p>
     0
   \end{pmatrix},
 \end{align*}\]</div>
-<p>we obtain that</p>
+<p class="sd-card-text">we obtain that</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
   \dot{q} = \omega \times q =
@@ -421,35 +412,32 @@ As (without loss of generality)</p>
     0
   \end{pmatrix}.
 \end{equation*}\]</div>
-<p>As a result, <span class="math notranslate nohighlight">\(\| \dot{q} \| = |\omega_3| \|q\| = \| \omega \| r\)</span> and therefore</p>
+<p class="sd-card-text">As a result, <span class="math notranslate nohighlight">\(\| \dot{q} \| = |\omega_3| \|q\| = \| \omega \| r\)</span> and therefore</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
   F_c = m \frac{ \| \dot{q} \|^2 }{r}
 \end{equation*}\]</div>
-<p>follows.</p>
-</section>
-<section id="on-general-curves">
-<h2>On general curves<a class="headerlink" href="#on-general-curves" title="Link to this heading">#</a></h2>
-<p>However, this is not applicable when the motion of the particle is not exactly circular;
-after all, the formula above depends on the radius of the circular motion.
-This can be mitigated by assuming the motion to be asymptotically circular.</p>
-<p>The osculating circle of a curve at a point is the circle that goes through that point
-and has the same tangent and curvature <span class="math notranslate nohighlight">\(\kappa\)</span> at that point. Its radius is</p>
-<div class="math notranslate nohighlight">
-\[
-r = \frac{1}{ | \kappa | }.
-\]</div>
-<p><span id="id5">[<a class="reference internal" href="bibliography.html#id6" title="Eric Weisstein. Osculating circle. Accessed: 2025-06-06. URL: https://mathworld.wolfram.com/OsculatingCircle.html.">Weib</a>]</span></p>
-<p>This turns the formula for the centrifugal force into</p>
+<p class="sd-card-text">follows.</p>
+<p class="sd-card-text"><span class="math notranslate nohighlight">\(\kappa = r^{-1}\)</span> <span id="id5">[<a class="reference internal" href="bibliography.html#id11" title="Ron Goldman. Curvature formulas for implicit curves and surfaces. Computer Aided Geometric Design, 22(7):632-658, 2005. Geometric Modelling and Differential Geometry. URL: https://www.sciencedirect.com/science/article/pii/S0167839605000737, doi:https://doi.org/10.1016/j.cagd.2005.06.005.">Gol05</a>, Example 3.1]</span> implies</p>
+<div class="math notranslate nohighlight" id="equation-eq-cent-circ">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-cent-circ" title="Link to this equation">#</a></span>\[  F_c = m \| \dot{q} \|^2 \kappa.\]</div>
+</div>
+</details><p>Take a body that is constrained to move along a curve.
+Then we already know from <a class="reference internal" href="newmark.html#equation-eq-accel-start">(6)</a> that
+the normal component of its acceleration is</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-  F_c = m \| \dot{q} \|^2 | \kappa |.
+  \| \dot{q} \|^2 \kappa.
 \end{equation*}\]</div>
-<p>Note that the direction of the centrifugal force is given by the sign of <span class="math notranslate nohighlight">\(\kappa\)</span>.</p>
+<p>In accordance with Newton’s law, we define the centrifugal force to be</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+  F_c := m \| \dot{q} \|^2 \kappa.
+\end{equation*}\]</div>
+<p>On circles, this coincides with the usual definition, see <a class="reference internal" href="#equation-eq-cent-circ">(7)</a>.</p>
 <!--
 order https://www.worldscientific.com/worldscibooks/10.1142/p802#t=aboutBook ??? \
 https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/archiv/universitaetssammlungen/privilegiensammlung -->
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -506,23 +494,6 @@ https://www.tuwien.at/tu-wien/organisation/zentrale-bereiche/archiv/universitaet
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-a-circle">On a circle</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#on-general-curves">On general curves</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
