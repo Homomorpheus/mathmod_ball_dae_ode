@@ -51,6 +51,7 @@
           G(q)
         \end{pmatrix}
         \end{equation*}
+        Anmerkung: $\ddot{q}, F + \lambda \nabla G(q) \in \mathbb{R}^2$
 \end{itemize}
 \end{frame}
 
@@ -209,7 +210,7 @@ Führt zu
 Anfangswerte:
 \begin{itemize}
 	\item $x_0$: aktuelle Position des Balls
-	\item $v_0$: Tangentialgeschwindigkeit
+	\item $v_0$: liegt tangential zur Kurve
 	\item $a_0$: Formel für Beschleunigung entlang einer Kurve:
 	\[
 	a_0 = a \tau + \kappa \| v_0 \|^2 \nu
@@ -257,20 +258,20 @@ Anfangswerte:
 		\item Zentrifugalkraft $F_c$
 	\end{itemize}
 	\item Wechsel sobald
-	\[ 
+	\[
 	F_{\nu} < 0
 	\]
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Aufprall auf die Kurve}	
+\begin{frame}{Aufprall auf die Kurve}
 	\begin{itemize}
 		\item Kurve ist definiert über $G(x) = 0$
 		\item Inneres entweder $G(x) < 0$ oder $G(x) > 0$ (konfigurierbar)
 		\item Aufprall, wenn $\operatorname{sign}(G(x))$ wechselt
 	\end{itemize}
 	\pause
-	
+
 	\textbf{Folgen:}
 	\begin{itemize}
 		\item Projektion der Position $x$ auf Kurve
@@ -298,7 +299,7 @@ Anfangswerte:
 		\item Normalgeschwindigkeit wird gespiegelt
 		\item Beschleunigung bleibt gleich
 	\end{itemize}
-\end{frame} 
+\end{frame}
 
 \begin{frame}[standout]
 	Gibt es Fragen?

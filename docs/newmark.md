@@ -1,7 +1,7 @@
 # The Newmark time stepper
 
 This project uses the Newmark solver for both DAEs and ODEs.
-In general we start out with an equation
+In general, we start out with an equation
 \begin{equation*}
   F = M \ddot{x} + C \dot{x} + Kx
 \end{equation*}
@@ -9,7 +9,7 @@ where $x(t) \in \mathbb{R}^{m}$ is the (generalized) position vector and $M, C, 
 denote mass, damping and stiffness matrix.
 
 Now let $x_n, v_n := \dot{x}_n, a_n := \ddot{x}_n$ be position, velocity, and acceleration at
-timestep $t_n$. To approximate their values at $t_{n+1} := t_n + h$ the Newmark-$\beta$ method
+time step $t_n$. To approximate their values at $t_{n+1} := t_n + h$ the Newmark-$\beta$ method
 gives us the following equations:
 
 \begin{align*}
@@ -33,7 +33,7 @@ We end up with
 
 ## Setup for the ODE
 Let us first consider the flying phase, meaning the current position of the ball is not on the
-curve and we need to solve an ODE.
+curve, and we need to solve an ODE.
 Here we set $C = \mathbf{0} \in \mathbb{R}^{2 \times 2}$, as well as
 \begin{equation*}
 M =
@@ -65,7 +65,7 @@ to add a velocity-dependent damping factor $c \in \mathbb{R}$, we define a dampi
 otherwise we set $C = \mathbf{0} \in \mathbb{R}^{3 \times 3}$.
 
 Here the initial values are going to be a bit more complicated.
-First, we devide the vector $x_n$ into
+First, we divide the vector $x_n$ into
 \begin{equation*}
   x_n =
   \begin{pmatrix}
@@ -76,7 +76,7 @@ First, we devide the vector $x_n$ into
 where $q_n \in \mathbb{R}^{2}$ and $\lambda_n \in \mathbb{R}$.
 The value for $q_0$ will be the current position of the ball on the curve.
 
-If we now split our Newmark equations in the same mannner, we get:
+If we now split our Newmark equations in the same manner, we get:
 
 ```{math}
 :label: eq:dae_sys

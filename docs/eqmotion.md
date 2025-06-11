@@ -96,6 +96,8 @@ Equation [](eq:motion) turns into
 \tilde{M} \begin{pmatrix} \ddot{q} \\ \ddot{\lambda} \end{pmatrix} = \tilde{F}.
 \end{equation*}
 
+Note that $\ddot{q} \in \mathbb{R}^2$.
+
 ## In free fall - derivation of an ODE
 
 In the case of a free fall, all of the above reduces to the well-known equation
