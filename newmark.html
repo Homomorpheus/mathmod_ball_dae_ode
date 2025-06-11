@@ -366,7 +366,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="the-newmark-time-stepper">
 <h1>The Newmark time stepper<a class="headerlink" href="#the-newmark-time-stepper" title="Link to this heading">#</a></h1>
 <p>This project uses the Newmark solver for both DAEs and ODEs.
-In general we start out with an equation</p>
+In general, we start out with an equation</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
   F = M \ddot{x} + C \dot{x} + Kx
@@ -374,7 +374,7 @@ In general we start out with an equation</p>
 <p>where <span class="math notranslate nohighlight">\(x(t) \in \mathbb{R}^{m}\)</span> is the (generalized) position vector and <span class="math notranslate nohighlight">\(M, C, K \in \mathbb{R}^{m \times m}\)</span>
 denote mass, damping and stiffness matrix.</p>
 <p>Now let <span class="math notranslate nohighlight">\(x_n, v_n := \dot{x}_n, a_n := \ddot{x}_n\)</span> be position, velocity, and acceleration at
-timestep <span class="math notranslate nohighlight">\(t_n\)</span>. To approximate their values at <span class="math notranslate nohighlight">\(t_{n+1} := t_n + h\)</span> the Newmark-<span class="math notranslate nohighlight">\(\beta\)</span> method
+time step <span class="math notranslate nohighlight">\(t_n\)</span>. To approximate their values at <span class="math notranslate nohighlight">\(t_{n+1} := t_n + h\)</span> the Newmark-<span class="math notranslate nohighlight">\(\beta\)</span> method
 gives us the following equations:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -397,7 +397,7 @@ In this case, the solver has quadratic accuracy. <span id="id2">[<a class="refer
 <section id="setup-for-the-ode">
 <h2>Setup for the ODE<a class="headerlink" href="#setup-for-the-ode" title="Link to this heading">#</a></h2>
 <p>Let us first consider the flying phase, meaning the current position of the ball is not on the
-curve and we need to solve an ODE.
+curve, and we need to solve an ODE.
 Here we set <span class="math notranslate nohighlight">\(C = \mathbf{0} \in \mathbb{R}^{2 \times 2}\)</span>, as well as</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -430,7 +430,7 @@ to add a velocity-dependent damping factor <span class="math notranslate nohighl
 \end{equation*}\]</div>
 <p>otherwise we set <span class="math notranslate nohighlight">\(C = \mathbf{0} \in \mathbb{R}^{3 \times 3}\)</span>.</p>
 <p>Here the initial values are going to be a bit more complicated.
-First, we devide the vector <span class="math notranslate nohighlight">\(x_n\)</span> into</p>
+First, we divide the vector <span class="math notranslate nohighlight">\(x_n\)</span> into</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
   x_n =
@@ -441,7 +441,7 @@ First, we devide the vector <span class="math notranslate nohighlight">\(x_n\)</
 \end{equation*}\]</div>
 <p>where <span class="math notranslate nohighlight">\(q_n \in \mathbb{R}^{2}\)</span> and <span class="math notranslate nohighlight">\(\lambda_n \in \mathbb{R}\)</span>.
 The value for <span class="math notranslate nohighlight">\(q_0\)</span> will be the current position of the ball on the curve.</p>
-<p>If we now split our Newmark equations in the same mannner, we get:</p>
+<p>If we now split our Newmark equations in the same manner, we get:</p>
 <div class="math notranslate nohighlight" id="equation-eq-dae-sys">
 <span class="eqno">(5)<a class="headerlink" href="#equation-eq-dae-sys" title="Link to this equation">#</a></span>\[\begin{split}  mg + \lambda_{n+1} \nabla G(q_{n+1})
   &amp;=
