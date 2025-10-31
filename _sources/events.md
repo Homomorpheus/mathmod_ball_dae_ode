@@ -6,7 +6,7 @@ The diagram below shows the internal workings of how the decision between ODE an
 For ease of use, the ball always starts in its rolling phase, projected to the closest point on the
 curve.
 
-<img src="../_static/state_flowchart_2.svg">
+<img src="./_static/state_flowchart_2.svg">
 
 <br>
 <br>
